@@ -8,8 +8,6 @@ public class Seat {
     private int seatRow;
     private int seatPlace;
 
-    private boolean seatAvailability;
-
     public long getSeatId() {
         return seatId;
     }
@@ -40,13 +38,5 @@ public class Seat {
 
     public void setSeatPlace(int seatPlace) {
         this.seatPlace = seatPlace;
-    }
-
-    public boolean isSeatAvailability() {
-        return seatAvailability;
-    }
-
-    public void setSeatAvailability(boolean seatAvailability) {
-        this.seatAvailability = seatAvailability;
     }
 }

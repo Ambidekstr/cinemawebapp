@@ -1,9 +1,11 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
+import java.math.BigDecimal;
+
 public class SeatCategory {
     private long seatCategoryId;
 
-    private Price price;
+    private BigDecimal price;
 
     private String seatCategory;
 
@@ -15,11 +17,11 @@ public class SeatCategory {
         this.seatCategoryId = seatCategoryId;
     }
 
-    public Price getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Price price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

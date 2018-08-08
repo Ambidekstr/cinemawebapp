@@ -8,7 +8,7 @@ import java.util.Date;
 public class Film {
     private long filmId;
 
-    private AgeRestriction ageRestriction;
+    private String ageRestriction;
 
     private String filmName;
     private String director;
@@ -29,11 +29,11 @@ public class Film {
         this.filmId = filmId;
     }
 
-    public AgeRestriction getAgeRestriction() {
+    public String getAgeRestriction() {
         return ageRestriction;
     }
 
-    public void setAgeRestriction(AgeRestriction ageRestriction) {
+    public void setAgeRestriction(String ageRestriction) {
         this.ageRestriction = ageRestriction;
     }
 
