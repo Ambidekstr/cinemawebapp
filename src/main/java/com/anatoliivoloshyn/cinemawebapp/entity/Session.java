@@ -14,6 +14,18 @@ public class Session {
 
     private String sessionLanguage;
 
+    public Session() {
+
+    }
+
+    public Session(long sessionId, Film film, Date date, Time time, String sessionLanguage) {
+        this.sessionId = sessionId;
+        this.film = film;
+        this.date = date;
+        this.time = time;
+        this.sessionLanguage = sessionLanguage;
+    }
+
     public long getSessionId() {
         return sessionId;
     }

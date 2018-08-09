@@ -5,6 +5,14 @@ public class Language {
 
     private String language;
 
+    public Language() {
+    }
+
+    public Language(long languageId, String language) {
+        this.languageId = languageId;
+        this.language = language;
+    }
+
     public long getLanguageId() {
         return languageId;
     }
