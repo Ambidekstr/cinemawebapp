@@ -5,7 +5,16 @@ public class Role {
 
     private String role;
 
+    public Role() {
+    }
+
+    public Role(long roleId, String role) {
+        this.roleId = roleId;
+        this.role = role;
+    }
+
     public long getRoleId() {
+
         return roleId;
     }
 

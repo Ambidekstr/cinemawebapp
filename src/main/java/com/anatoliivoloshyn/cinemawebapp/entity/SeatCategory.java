@@ -7,6 +7,16 @@ public class SeatCategory {
 
     private BigDecimal price;
 
+    public SeatCategory() {
+
+    }
+
+    public SeatCategory(long seatCategoryId, BigDecimal price, String seatCategory) {
+        this.seatCategoryId = seatCategoryId;
+        this.price = price;
+        this.seatCategory = seatCategory;
+    }
+
     private String seatCategory;
 
     public long getSeatCategoryId() {

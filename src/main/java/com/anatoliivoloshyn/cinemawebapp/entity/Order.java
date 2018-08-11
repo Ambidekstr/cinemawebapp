@@ -3,12 +3,22 @@ package com.anatoliivoloshyn.cinemawebapp.entity;
 import java.util.Date;
 import java.util.List;
 
-public class Orders {
+public class Order {
     private long ordersId;
 
     private Date ordersDateTime;
 
     private User user;
+
+    public Order() {
+
+    }
+
+    public Order(long ordersId, Date ordersDateTime, User user) {
+        this.ordersId = ordersId;
+        this.ordersDateTime = ordersDateTime;
+        this.user = user;
+    }
 
     public long getOrdersId() {
         return ordersId;

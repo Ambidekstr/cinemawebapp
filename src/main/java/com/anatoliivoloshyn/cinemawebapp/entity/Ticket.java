@@ -5,20 +5,29 @@ public class Ticket {
 
     private Session session;
 
-    private User user;
-
-    private Orders orders;
+    private Order order;
 
     private Seat seat;
 
     private boolean booked;
 
-    public User getUser() {
-        return user;
+    public Ticket() {
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public Ticket(long ticketId, Session session, Seat seat, boolean booked) {
+        this.ticketId = ticketId;
+        this.session = session;
+        this.seat = seat;
+        this.booked = booked;
+    }
+
+    public Ticket(long ticketId, Session session, Order order, Seat seat, boolean booked) {
+
+        this.ticketId = ticketId;
+        this.session = session;
+        this.order = order;
+        this.seat = seat;
+        this.booked = booked;
     }
 
     public Seat getSeat() {
@@ -53,11 +62,11 @@ public class Ticket {
         this.session = session;
     }
 
-    public Orders getOrders() {
-        return orders;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

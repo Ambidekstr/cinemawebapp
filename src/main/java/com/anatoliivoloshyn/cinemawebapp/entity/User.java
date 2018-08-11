@@ -12,7 +12,20 @@ public class User {
 
     private Role role;
     private Language language;
-    private List<Orders> ordersList;
+
+    public User() {
+    }
+
+    public User(long userId, String login, String password, String name, String surname, Role role, Language language) {
+        this.userId = userId;
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.role = role;
+        this.language = language;
+    }
+
 
     public long getUserId() {
         return userId;
@@ -68,13 +81,5 @@ public class User {
 
     public void setLanguage(Language language) {
         this.language = language;
-    }
-
-    public List<Orders> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Orders> ordersList) {
-        this.ordersList = ordersList;
     }
 }

@@ -1,25 +1,30 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
-import javafx.scene.image.Image;
-
 import java.sql.Time;
-import java.util.Date;
 
 public class Film {
     private long filmId;
 
     private String ageRestriction;
-
     private String filmName;
     private String director;
-
-    private Date dateOfProduction;
+    private String poster;
+    private String trailerPath;
 
     private Time duration;
 
-    private Image poster;
+    public Film() {
+    }
 
-    private String trailerPath;
+    public Film(long filmId, String ageRestriction, String filmName, String director, String poster, String trailerPath, Time duration) {
+        this.filmId = filmId;
+        this.ageRestriction = ageRestriction;
+        this.filmName = filmName;
+        this.director = director;
+        this.poster = poster;
+        this.trailerPath = trailerPath;
+        this.duration = duration;
+    }
 
     public long getFilmId() {
         return filmId;
@@ -53,14 +58,6 @@ public class Film {
         this.director = director;
     }
 
-    public Date getDateOfProduction() {
-        return dateOfProduction;
-    }
-
-    public void setDateOfProduction(Date dateOfProduction) {
-        this.dateOfProduction = dateOfProduction;
-    }
-
     public Time getDuration() {
         return duration;
     }
@@ -69,11 +66,11 @@ public class Film {
         this.duration = duration;
     }
 
-    public Image getPoster() {
+    public String getPoster() {
         return poster;
     }
 
-    public void setPoster(Image poster) {
+    public void setPoster(String poster) {
         this.poster = poster;
     }
 
