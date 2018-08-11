@@ -1,6 +1,9 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
-public class Seat {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Seat implements Serializable {
     private long seatId;
 
     private SeatCategory seatCategory;
@@ -49,5 +52,31 @@ public class Seat {
 
     public void setSeatPlace(int seatPlace) {
         this.seatPlace = seatPlace;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Seat seat = (Seat) o;
+        return seatId == seat.seatId &&
+                seatRow == seat.seatRow &&
+                seatPlace == seat.seatPlace;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(seatId, seatRow, seatPlace);
+    }
+
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "seatId=" + seatId +
+                ", seatCategory=" + seatCategory +
+                ", seatRow=" + seatRow +
+                ", seatPlace=" + seatPlace +
+                '}';
     }
 }

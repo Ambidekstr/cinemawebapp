@@ -1,8 +1,10 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
+import java.io.Serializable;
 import java.sql.Time;
+import java.util.Objects;
 
-public class Film {
+public class Film implements Serializable {
     private long filmId;
 
     private String ageRestriction;
@@ -14,6 +16,10 @@ public class Film {
     private Time duration;
 
     public Film() {
+    }
+
+    public Film(long filmId) {
+        this.filmId = filmId;
     }
 
     public Film(long filmId, String ageRestriction, String filmName, String director, String poster, String trailerPath, Time duration) {
@@ -80,5 +86,33 @@ public class Film {
 
     public void setTrailerPath(String trailerPath) {
         this.trailerPath = trailerPath;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Film film = (Film) o;
+        return filmId == film.filmId &&
+                Objects.equals(filmName, film.filmName) &&
+                Objects.equals(director, film.director) &&
+                Objects.equals(duration, film.duration);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(filmId, filmName, director, duration);
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "filmId=" + filmId +
+                ", ageRestriction='" + ageRestriction + '\'' +
+                ", filmName='" + filmName + '\'' +
+                ", director='" + director + '\'' +
+                ", duration=" + duration +
+                '}';
     }
 }

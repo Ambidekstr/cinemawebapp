@@ -1,9 +1,11 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-public class Order {
+public class Order implements Serializable {
     private long ordersId;
 
     private Date ordersDateTime;
@@ -42,5 +44,29 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return ordersId == order.ordersId &&
+                Objects.equals(ordersDateTime, order.ordersDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(ordersId, ordersDateTime);
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ordersId=" + ordersId +
+                ", ordersDateTime=" + ordersDateTime +
+                ", user=" + user +
+                '}';
     }
 }

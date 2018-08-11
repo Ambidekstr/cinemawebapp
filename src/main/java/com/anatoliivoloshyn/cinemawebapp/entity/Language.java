@@ -1,6 +1,9 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
-public class Language {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Language implements Serializable {
     private long languageId;
 
     private String language;
@@ -27,5 +30,28 @@ public class Language {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Language language1 = (Language) o;
+        return languageId == language1.languageId &&
+                Objects.equals(language, language1.language);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(languageId, language);
+    }
+
+    @Override
+    public String toString() {
+        return "Language{" +
+                "languageId=" + languageId +
+                ", language='" + language + '\'' +
+                '}';
     }
 }

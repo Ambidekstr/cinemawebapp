@@ -2,7 +2,7 @@ package com.anatoliivoloshyn.cinemawebapp.dao.interfaces;
 
 import com.anatoliivoloshyn.cinemawebapp.entity.Session;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public interface IDAOSession {

@@ -1,6 +1,9 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
-public class Ticket {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Ticket implements Serializable {
     private long ticketId;
 
     private Session session;
@@ -68,5 +71,31 @@ public class Ticket {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return ticketId == ticket.ticketId &&
+                Objects.equals(session, ticket.session) &&
+                Objects.equals(seat, ticket.seat);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ticketId, session, seat);
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", session=" + session +
+                ", order=" + order +
+                ", seat=" + seat +
+                ", booked=" + booked +
+                '}';
     }
 }

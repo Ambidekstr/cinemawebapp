@@ -1,9 +1,11 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
+import java.io.Serializable;
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Objects;
 
-public class Session {
+public class Session implements Serializable {
     private long sessionId;
 
     private Film film;
@@ -64,5 +66,33 @@ public class Session {
 
     public void setSessionLanguage(String sessionLanguage) {
         this.sessionLanguage = sessionLanguage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return sessionId == session.sessionId &&
+                Objects.equals(film, session.film) &&
+                Objects.equals(date, session.date) &&
+                Objects.equals(time, session.time) &&
+                Objects.equals(sessionLanguage, session.sessionLanguage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sessionId, film, date, time, sessionLanguage);
+    }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "sessionId=" + sessionId +
+                ", film=" + film +
+                ", date=" + date +
+                ", time=" + time +
+                ", sessionLanguage='" + sessionLanguage + '\'' +
+                '}';
     }
 }
