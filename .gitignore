@@ -1,2 +1,5 @@
-/.idea
-.idea
+/.idea/
+.idea.*
+.idea/artifacts/cinemawebapp_war_exploded.xml
+.idea/workspace.xml
+cinemawebapp.iml
