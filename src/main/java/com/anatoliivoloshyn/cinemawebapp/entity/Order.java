@@ -1,14 +1,13 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Order implements Serializable {
     private long ordersId;
 
-    private Date ordersDateTime;
+    private Timestamp ordersDateTime;
 
     private User user;
 
@@ -16,7 +15,11 @@ public class Order implements Serializable {
 
     }
 
-    public Order(long ordersId, Date ordersDateTime, User user) {
+    public Order(long ordersId) {
+        this.ordersId = ordersId;
+    }
+
+    public Order(long ordersId, Timestamp ordersDateTime, User user) {
         this.ordersId = ordersId;
         this.ordersDateTime = ordersDateTime;
         this.user = user;
@@ -30,11 +33,11 @@ public class Order implements Serializable {
         this.ordersId = ordersId;
     }
 
-    public Date getOrdersDateTime() {
+    public Timestamp getOrdersDateTime() {
         return ordersDateTime;
     }
 
-    public void setOrdersDateTime(Date ordersDateTime) {
+    public void setOrdersDateTime(Timestamp ordersDateTime) {
         this.ordersDateTime = ordersDateTime;
     }
 

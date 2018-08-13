@@ -12,6 +12,9 @@ public class SeatCategory implements Serializable {
     public SeatCategory() {
 
     }
+    public SeatCategory(long seatCategoryId) {
+        this.seatCategoryId = seatCategoryId;
+    }
 
     public SeatCategory(long seatCategoryId, BigDecimal price, String seatCategory) {
         this.seatCategoryId = seatCategoryId;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IDAORole {
     List<Role> findAllRoles();
-    Role findRole(String roleName);
+    Role findById(long id);
     boolean addRole(Role role);
     boolean deleteRole(Role role);
 

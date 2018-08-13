@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface IDAOSession {
     List<Session> findAllSessions();
-    List<Session> findSessionsByFilmName(String filmName);
-    List<Session> findSessionByDate(Date date);
+    Session findSessionById(long id);
     boolean addSession(Session session);
     boolean updateSession(Session sessionToUpdate, Session updatedSession);
     boolean deleteSession(Session session);

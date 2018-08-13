@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IDAOSeatCategory {
     List<SeatCategory> findAllSeatCategory();
-    BigDecimal getSeatCategoryPrice(String category);
+    SeatCategory findSeatCategoryById(long id);
     boolean addSeatCategory(SeatCategory seatCategory);
     boolean updateSeatCategory(SeatCategory seatCategoryToUpdate, SeatCategory updatedSeatCategory);
-    boolean deleteSeatCategory(String seatCategoryName);
+    boolean deleteSeatCategory(SeatCategory seatCategoryToDelete);
 }

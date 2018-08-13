@@ -1,4 +1,4 @@
-package com.anatoliivoloshyn.cinemawebapp.servlets;
+package com.anatoliivoloshyn.cinemawebapp.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

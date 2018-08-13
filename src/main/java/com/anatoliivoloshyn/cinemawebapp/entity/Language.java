@@ -11,6 +11,10 @@ public class Language implements Serializable {
     public Language() {
     }
 
+    public Language(long languageId) {
+        this.languageId = languageId;
+    }
+
     public Language(long languageId, String language) {
         this.languageId = languageId;
         this.language = language;

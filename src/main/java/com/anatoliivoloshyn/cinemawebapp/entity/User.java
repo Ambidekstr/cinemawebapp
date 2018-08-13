@@ -17,6 +17,10 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(long userId) {
+        this.userId = userId;
+    }
+
     public User(long userId, String login, String password, String name, String surname, Role role, Language language) {
         this.userId = userId;
         this.login = login;
