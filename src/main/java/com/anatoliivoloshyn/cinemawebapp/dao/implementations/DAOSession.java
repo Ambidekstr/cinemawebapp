@@ -53,13 +53,14 @@ public class DAOSession implements IDAOSession {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1, id);
             resultSet = preparedStatement.executeQuery();
-                sessionDao = new Session(
-                        resultSet.getLong("session_id"),
-                        new Film(resultSet.getLong("film_id")),
-                        resultSet.getDate("date"),
-                        resultSet.getTime("time"),
-                        resultSet.getString("session_language"));
-                sessionList.add(sessionDao);
+            resultSet.next();
+            sessionDao = new Session(
+                    resultSet.getLong("session_id"),
+                    new Film(resultSet.getLong("film_id")),
+                    resultSet.getDate("date"),
+                    resultSet.getTime("time"),
+                    resultSet.getString("session_language"));
+            sessionList.add(sessionDao);
         }catch (SQLException e){
             e.printStackTrace();
         }

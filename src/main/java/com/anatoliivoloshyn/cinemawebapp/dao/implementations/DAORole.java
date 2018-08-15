@@ -45,6 +45,7 @@ public class DAORole implements IDAORole {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             roleDao = new Role(
                     resultSet.getLong("role_id"),
                     resultSet.getString("role"));

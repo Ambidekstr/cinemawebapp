@@ -48,6 +48,7 @@ public class DAOSeatCategory implements IDAOSeatCategory {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             seatCategoryDao = new SeatCategory(
                     resultSet.getLong("seat_category_id"),
                     resultSet.getBigDecimal("price"),

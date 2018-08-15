@@ -26,7 +26,7 @@ public final class PropertyHolder {
         Properties prop = new Properties();
 
         try {
-            prop.load(PropertyHolder.class.getClassLoader().getResourceAsStream("cinema.properties"));
+            prop.load(PropertyHolder.class.getClassLoader().getResourceAsStream("cinemaDB.properties"));
 
             this.dbDriver = prop.getProperty("dbDriver");
             this.jdbcUrl = prop.getProperty("jdbcUrl");

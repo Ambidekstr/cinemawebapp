@@ -52,6 +52,7 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             film = new Film(
                     resultSet.getLong("film_id"),
                     resultSet.getString("age_restriction"),

@@ -48,6 +48,7 @@ public class DAOOrders implements IDAOOrders {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             orderDao = new Order(
                     resultSet.getLong("orders_id"),
                     resultSet.getTimestamp("orders_date_time"),

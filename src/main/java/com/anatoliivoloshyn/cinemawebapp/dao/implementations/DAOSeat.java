@@ -49,6 +49,7 @@ public class DAOSeat implements IDAOSeat {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             seatDao = new Seat(
                     resultSet.getLong("seat_id"),
                     new SeatCategory(resultSet.getLong("seat_category_id")),

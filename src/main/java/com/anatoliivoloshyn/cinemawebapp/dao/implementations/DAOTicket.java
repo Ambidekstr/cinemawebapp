@@ -50,6 +50,7 @@ public class DAOTicket implements IDAOTicket {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             ticketDao = new Ticket(
                     resultSet.getLong("ticket_id"),
                     new Session(resultSet.getLong("session_id")),

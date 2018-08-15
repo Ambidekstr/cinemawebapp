@@ -46,6 +46,7 @@ public class DAOLanguage implements IDAOLanguage {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             languageDao = new Language(
                     resultSet.getLong("language_id"),
                     resultSet.getString("language"));

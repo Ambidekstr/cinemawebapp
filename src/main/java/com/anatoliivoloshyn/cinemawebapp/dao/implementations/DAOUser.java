@@ -54,6 +54,7 @@ public class DAOUser implements IDAOUser {
             preparedStatement = connection.prepareStatement(SELECT_BY_LOGIN);
             preparedStatement.setString(1,login);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             userDao = new User(
                     resultSet.getLong("user_id"),
                     resultSet.getString("login"),
@@ -74,6 +75,7 @@ public class DAOUser implements IDAOUser {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             userDao = new User(
                     resultSet.getLong("user_id"),
                     resultSet.getString("login"),
