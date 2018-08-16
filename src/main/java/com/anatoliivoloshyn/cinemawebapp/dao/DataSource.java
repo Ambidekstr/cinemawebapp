@@ -1,25 +1,25 @@
 package com.anatoliivoloshyn.cinemawebapp.dao;
 
-import com.anatoliivoloshyn.cinemawebapp.util.PropertyHolder;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public final class DataSource {
-
-    private static BasicDataSource poolOfConnections = new BasicDataSource();
-    private static DataSource dataSource = new DataSource();
+    private static Logger logger = Logger.getLogger(DataSource.class);
+    private static BasicDataSource poolOfConnections;
+    private static DataSource dataSource;
 
     private DataSource() {
-        try {
+            poolOfConnections = new BasicDataSource();
+            logger.info("Establishing connection pool");
             poolOfConnections.setDriverClassName("com.mysql.cj.jdbc.Driver");
-
-            poolOfConnections.setUrl("jdbc:mysql://localhost:3306/cinema_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT");
+            poolOfConnections.setUrl("jdbc:mysql://127.0.0.1:3306/cinema_db");
             poolOfConnections.setUsername("root");
-            poolOfConnections.setPassword("1234");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            poolOfConnections.setPassword("root");
+//            poolOfConnections.setConnectionProperties("useUnicode=true;useJDBCCompliantTimezoneShift=true;useLegacyDatetimeCode=false;serverTimezone=GMT;autoReconnect=true;useSSL=false");
+            logger.info("Connection pool created");
     }
 
     public static synchronized DataSource getInstance() {
@@ -34,7 +34,7 @@ public final class DataSource {
         try {
             connection = poolOfConnections.getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error retrieving a connection", e);
         }
         return connection;
     }

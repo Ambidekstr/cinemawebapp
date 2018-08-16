@@ -5,6 +5,8 @@ import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOUser;
 import com.anatoliivoloshyn.cinemawebapp.entity.Language;
 import com.anatoliivoloshyn.cinemawebapp.entity.Role;
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
+import org.apache.log4j.Logger;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DAOUser implements IDAOUser {
+    private static Logger logger = Logger.getLogger(DAOUser.class);
     private final String SELECT_ALL = "Select * from `user`";
     private final String SELECT_BY_LOGIN = "Select * from `user` where `login` = ?";
     private final String SELECT_BY_ID = "Select * from `user` where `user_id` = ?";
@@ -51,9 +54,12 @@ public class DAOUser implements IDAOUser {
     @Override
     public User findUserByLogin(String login) {
         try(Connection connection = DataSource.getInstance().getConnection()){
+            logger.info("Retriving a connection");
             preparedStatement = connection.prepareStatement(SELECT_BY_LOGIN);
             preparedStatement.setString(1,login);
+            logger.info("Preparing statement");
             resultSet = preparedStatement.executeQuery();
+            logger.info("Getting result set");
             resultSet.next();
             userDao = new User(
                     resultSet.getLong("user_id"),
@@ -64,7 +70,7 @@ public class DAOUser implements IDAOUser {
                     new Role(resultSet.getLong("role_id")),
                     new Language(resultSet.getLong("language_id")));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error("SQLException", e);
         }
         return userDao;
     }

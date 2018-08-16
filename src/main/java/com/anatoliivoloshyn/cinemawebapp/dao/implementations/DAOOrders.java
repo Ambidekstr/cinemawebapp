@@ -42,11 +42,6 @@ public class DAOOrders implements IDAOOrders {
         return orderList;
     }
 
-    @Override
-<<<<<<< HEAD
-    public List<Order> findOrdersByDate(Date date) {
-        return null;
-=======
     public Order findOrdersById(long id) {
         try(Connection connection = DataSource.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
@@ -61,7 +56,6 @@ public class DAOOrders implements IDAOOrders {
             e.printStackTrace();
         }
         return orderDao;
->>>>>>> bcce36c19e06efe888e479df5ed4c38be5fa5889
     }
 
     @Override

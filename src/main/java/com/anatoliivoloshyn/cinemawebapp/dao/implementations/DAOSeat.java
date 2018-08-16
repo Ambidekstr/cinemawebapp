@@ -15,7 +15,7 @@ import java.util.List;
 public class DAOSeat implements IDAOSeat {
     private final String SELECT_ALL = "Select * from `seat`";
     private final String SELECT_BY_ID = "Select * from `seat` where `seat_id` = ?";
-    private final String ADD_SEAT = "Insert into (`seat_category_id`, `seat_row`, `seat_place`) seat values (?,?,?)";
+    private final String ADD_SEAT = "Insert into `seat`(`seat_category_id`, `seat_row`, `seat_place`)  values (?,?,?)";
     private final String UPDATE_SEAT = "Update `film` set `seat_category_id` = ?, `seat_row` = ?, `seat_place` = ? where `seat_id` = ?";
     private final String DELETE_SEAT = "Delete from `film` where `seat_id` = ?";
     private List<Seat> seatList;

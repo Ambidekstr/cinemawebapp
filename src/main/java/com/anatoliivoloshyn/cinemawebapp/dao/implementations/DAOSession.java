@@ -15,10 +15,6 @@ import java.sql.Date;
 
 
 public class DAOSession implements IDAOSession {
-<<<<<<< HEAD
-    private static final String SELECT_ALL = "Select * from session";
-    private List<Session> sessionList;
-=======
     private final String SELECT_ALL = "Select * from `session`";
     private final String SELECT_BY_ID = "Select * from `session` where `session_id` = ?";
     private final String ADD_SESSION = "Insert into `session`(`film_id`, `date`, `time`, `session_language`) values (?,?,?,?)";
@@ -28,7 +24,6 @@ public class DAOSession implements IDAOSession {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private Session sessionDao;
->>>>>>> bcce36c19e06efe888e479df5ed4c38be5fa5889
 
     @Override
     public List<Session> findAllSessions() {
