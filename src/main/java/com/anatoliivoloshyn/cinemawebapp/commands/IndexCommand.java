@@ -10,7 +10,7 @@ public class IndexCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         SessionService sessionService = new SessionService();
-        request.setAttribute("sessions",sessionService.getSessions());
+        request.setAttribute("sessionList",sessionService.getSessions());
         return "/main.jsp";
     }
 }

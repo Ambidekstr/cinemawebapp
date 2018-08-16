@@ -6,10 +6,10 @@
     <title>Cinema</title>
 </head>
 <body>
-        <table>
-        <c:forEach  items="${sessions}" var="session">
-            <tr><c:out value="${session}"/> </tr>
-        </c:forEach>
-        </table>
+
+
+            <c:out value="${sessionList}"/>
+
+
 </body>
 </html>

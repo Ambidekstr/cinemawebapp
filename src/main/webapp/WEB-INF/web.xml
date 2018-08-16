@@ -10,11 +10,12 @@
         <servlet-class>com.anatoliivoloshyn.cinemawebapp.servlet.Controller</servlet-class>
     </servlet>
     <welcome-file-list>
-        <welcome-file>/main.jsp</welcome-file>
+        <welcome-file>Controller</welcome-file>
     </welcome-file-list>
+
 
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
 </web-app>

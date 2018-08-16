@@ -15,7 +15,7 @@ public class Controller extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ICommand iCommand = ControllerHelper.getInstance().getCommand(req);
         iCommand.execute(req,resp);
-        resp.sendRedirect("/main.jsp");
+        req.getRequestDispatcher("/main.jsp").forward(req,resp);
     }
 
     @Override
