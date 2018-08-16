@@ -28,7 +28,7 @@ public final class PropertyHolder {
         Properties prop = new Properties();
 
         try {
-            prop.load(PropertyHolder.class.getClassLoader().getResourceAsStream("cinema.properties"));
+            prop.load(PropertyHolder.class.getClassLoader().getResourceAsStream("cinemaDB.properties"));
 
             this.isInMemoryDB = Boolean.valueOf(prop.getProperty("isInMemoryDB"));
             this.dbDriver = prop.getProperty("dbDriver");

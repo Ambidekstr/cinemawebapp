@@ -15,11 +15,12 @@ import java.sql.Date;
 
 
 public class DAOSession implements IDAOSession {
-    public static final String SELECT_ALL = "Select * from session";
+    private static final String SELECT_ALL = "Select * from session";
+    private List<Session> sessionList;
 
     @Override
     public List<Session> findAllSessions() {
-        List<Session> sessionList = new LinkedList<>();
+        sessionList = new LinkedList<>();
         try(Connection connection = DataSource.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();

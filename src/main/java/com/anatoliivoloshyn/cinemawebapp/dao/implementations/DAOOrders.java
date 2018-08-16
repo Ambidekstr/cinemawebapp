@@ -19,7 +19,7 @@ public class DAOOrders implements IDAOOrders {
     }
 
     @Override
-    public List<Order> findOrdarsByDate(Date date) {
+    public List<Order> findOrdersByDate(Date date) {
         return null;
     }
 
