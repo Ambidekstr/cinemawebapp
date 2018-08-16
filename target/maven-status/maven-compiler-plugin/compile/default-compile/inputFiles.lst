@@ -23,6 +23,7 @@ C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinem
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\dao\implementations\DAOSeat.java
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\dao\interfaces\IDAOSession.java
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\entity\Session.java
+C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\commands\IndexCommand.java
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\dao\DAOFactory.java
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\dao\implementations\DAOSeatCategory.java
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\dao\implementations\DAOUser.java
@@ -33,3 +34,4 @@ C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinem
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\entity\User.java
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\dao\interfaces\IDAOFilm.java
 C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\entity\Seat.java
+C:\Users\Lena\IdeaProjects\cinemawebapp\src\main\java\com\anatoliivoloshyn\cinemawebapp\service\SessionService.java
