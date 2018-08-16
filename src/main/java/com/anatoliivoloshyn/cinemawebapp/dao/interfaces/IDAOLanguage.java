@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IDAOLanguage {
     List<Language> findAllLanguages();
-    Language findLanguage(String language);
+    Language findLanguageById(long id);
     boolean addLanguage(Language language);
     boolean deleteLanguage(Language language);
 }

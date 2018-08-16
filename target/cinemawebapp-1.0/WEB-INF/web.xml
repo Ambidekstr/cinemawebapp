@@ -6,12 +6,12 @@
          version="2.5">
 
     <servlet>
-        <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>com.anatoliivoloshyn.cinemawebapp.servlets.IndexServlet</servlet-class>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.anatoliivoloshyn.cinemawebapp.servlet.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>IndexServlet</servlet-name>
+        <servlet-name>Controller</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

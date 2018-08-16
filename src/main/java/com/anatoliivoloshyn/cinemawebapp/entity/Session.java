@@ -20,6 +20,10 @@ public class Session implements Serializable {
 
     }
 
+    public Session(long sessionId) {
+        this.sessionId = sessionId;
+    }
+
     public Session(long sessionId, Film film, Date date, Time time, String sessionLanguage) {
         this.sessionId = sessionId;
         this.film = film;

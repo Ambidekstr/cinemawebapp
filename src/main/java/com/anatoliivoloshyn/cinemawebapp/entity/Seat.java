@@ -14,6 +14,10 @@ public class Seat implements Serializable {
     public Seat() {
     }
 
+    public Seat(long seatId) {
+        this.seatId = seatId;
+    }
+
     public Seat(long seatId, SeatCategory seatCategory, int seatRow, int seatPlace) {
 
         this.seatId = seatId;

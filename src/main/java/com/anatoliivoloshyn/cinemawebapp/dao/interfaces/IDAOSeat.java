@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IDAOSeat {
     List<Seat> findAllSeats();
-    Seat findSeat(int row, int place);
+    Seat findSeatById(long id);
     boolean addSeat(Seat seat);
-    boolean deleteSeat(int row, int place);
+    boolean deleteSeat(Seat seat);
     boolean updateSeat(Seat seatForUpdate, Seat updatedSeat);
 }

@@ -7,9 +7,8 @@ import java.util.List;
 public interface IDAOUser {
     List<User> findAllUsers();
     User findUserByLogin(String login);
-    List<User> findUserByRole(String role);
+    User findUserById(long id);
     boolean addUser(User user);
     boolean updateUser(User userToUpdate, User updatedUser);
     boolean deleteUser(User user);
-    boolean deleteUserByLogin(String login);
 }

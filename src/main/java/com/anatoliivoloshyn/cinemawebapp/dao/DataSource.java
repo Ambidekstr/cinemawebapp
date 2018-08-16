@@ -1,30 +1,23 @@
 package com.anatoliivoloshyn.cinemawebapp.dao;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-
-import java.beans.PropertyVetoException;
+import com.anatoliivoloshyn.cinemawebapp.util.PropertyHolder;
+import org.apache.commons.dbcp.BasicDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public final class DataSource {
 
-    private static ComboPooledDataSource poolOfConnections;
-    private static DataSource dataSource;
+    private static BasicDataSource poolOfConnections = new BasicDataSource();
+    private static DataSource dataSource = new DataSource();
 
     private DataSource() {
-        poolOfConnections = new ComboPooledDataSource();
-        PropertyHolder propertyHolder = PropertyHolder.getInstance();
         try {
-            poolOfConnections.setDriverClass(propertyHolder.getDbDriver());
+            poolOfConnections.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-            poolOfConnections.setJdbcUrl(propertyHolder.getJdbcUrl());
-            poolOfConnections.setUser(propertyHolder.getDbUserLogin());
-            poolOfConnections.setPassword(propertyHolder.getDbUserPassword());
-
-            poolOfConnections.setMinPoolSize(10);
-            poolOfConnections.setAcquireIncrement(1);
-            poolOfConnections.setMaxPoolSize(100);
-        } catch (PropertyVetoException e) {
+            poolOfConnections.setUrl("jdbc:mysql://localhost:3306/cinema_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT");
+            poolOfConnections.setUsername("root");
+            poolOfConnections.setPassword("1234");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
