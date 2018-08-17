@@ -1,9 +1,6 @@
 package com.anatoliivoloshyn.cinemawebapp.util;
 
-import com.anatoliivoloshyn.cinemawebapp.commands.BuyTicketCommand;
-import com.anatoliivoloshyn.cinemawebapp.commands.ICommand;
-import com.anatoliivoloshyn.cinemawebapp.commands.IndexCommand;
-import com.anatoliivoloshyn.cinemawebapp.commands.LoginCommand;
+import com.anatoliivoloshyn.cinemawebapp.commands.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -17,6 +14,7 @@ public class ControllerHelper {
         commandResolver.put("login", new LoginCommand());
         commandResolver.put("index", new IndexCommand());
         commandResolver.put("buyTicket", new BuyTicketCommand());
+        commandResolver.put("order", new OrderCommand());
     }
 
     public static ControllerHelper getInstance(){
@@ -27,9 +25,9 @@ public class ControllerHelper {
     }
 
     public ICommand getCommand(HttpServletRequest request){
-        if(request.getSession().getAttribute("command")==null){
+        if(request.getParameter("command")==null){
             return commandResolver.get("index");
         }
-        return commandResolver.get(request.getSession().getAttribute("command"));
+        return commandResolver.get(request.getParameter("command"));
     }
 }

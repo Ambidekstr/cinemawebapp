@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kmbs
@@ -8,9 +9,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Order</title>
+    <h1>Your order</h1>
 </head>
 <body>
-
+<c:forEach items="${ticketForOrder}" var="ticket">
+    <table border="1">
+        <thead align="center">
+        <tr>
+            <td colspan="2" ><c:out value="${ticket.session.film.filmName}"/></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Time&Date</td>
+            <td>
+                <c:out value="${ticket.session.time}"/><br/>
+                <c:out value="${ticket.session.date}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Seat</td>
+            <td>
+                Row <c:out value="${ticket.seat.seatRow}"/><br/>
+                Place <c:out value="${ticket.seat.seatPlace}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>
+                <c:out value="${ticket.seat.seatCategory.price}"/> UAH
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</c:forEach>
+<p>Total cost: <c:out value="${totalPrice}"/></p>
 </body>
 </html>

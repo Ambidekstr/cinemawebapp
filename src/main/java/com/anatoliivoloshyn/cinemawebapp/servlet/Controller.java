@@ -20,7 +20,6 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ICommand iCommand = ControllerHelper.getInstance().getCommand(req);
-
         req.getRequestDispatcher(iCommand.execute(req,resp)).forward(req,resp);
     }
 }

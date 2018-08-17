@@ -16,7 +16,6 @@
     </style>
 </head>
 <body>
-<header>
 <form action="/Controller" method="post">
 <table class="table">
     <thead>
@@ -32,28 +31,28 @@
                 <c:if test="${ticket.booked}">
                     <c:if test="${ticket.seat.seatRow < 5}">
                         <td style="background-color:darkblue;">
-                            <input type="checkbox" name="checkbox" value="${ticket.ticketId}" disabled/>
+                            <input type="ticketId" name="ticketId" value="${ticket.ticketId}" disabled/>
                         </td>
                     </c:if>
                 </c:if>
                 <c:if test="${!ticket.booked}">
                     <c:if test="${ticket.seat.seatRow < 5}">
                         <td style="background-color:green;">
-                            <input type="checkbox" name="${ticket.ticketId}" value="${ticket.ticketId}"/>
+                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}"/>
                         </td>
                     </c:if>
                 </c:if>
                 <c:if test="${ticket.booked}">
                     <c:if test="${ticket.seat.seatRow == 5}">
                         <td class="lux" style="background-color:darkblue;">
-                            <input type="checkbox" name="${ticket.ticketId}" value="${ticket.ticketId}" disabled/>
+                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}" disabled/>
                         </td>
                     </c:if>
                 </c:if>
                 <c:if test="${!ticket.booked}">
                     <c:if test="${ticket.seat.seatRow == 5}">
                         <td style="background-color:mediumpurple;">
-                            <input type="checkbox" name="${ticket.ticketId}" value="${ticket.ticketId}"/>
+                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}"/>
                         </td>
                     </c:if>
                 </c:if>
@@ -62,11 +61,11 @@
     </c:forEach>
     <tr>
         <td colspan="10" align="center" >
-            <input type="submit" value="Buy"></td>
+            <input type="hidden" name="command" value="order">
+            <input type="submit" value="Checkout"></td>
     </tr>
     </tbody>
 </table>
 </form>
-</header>
 </body>
 </html>
