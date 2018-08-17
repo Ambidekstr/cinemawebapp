@@ -13,7 +13,7 @@ public class Film implements Serializable {
     private String poster;
     private String trailerPath;
 
-    private Time duration;
+    private String duration;
 
     public Film() {
     }
@@ -22,7 +22,7 @@ public class Film implements Serializable {
         this.filmId = filmId;
     }
 
-    public Film(long filmId, String ageRestriction, String filmName, String director, String poster, String trailerPath, Time duration) {
+    public Film(long filmId, String ageRestriction, String filmName, String director, String poster, String trailerPath, String duration) {
         this.filmId = filmId;
         this.ageRestriction = ageRestriction;
         this.filmName = filmName;
@@ -64,11 +64,11 @@ public class Film implements Serializable {
         this.director = director;
     }
 
-    public Time getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Time duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

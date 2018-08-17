@@ -15,6 +15,7 @@ import java.util.List;
 public class DAOTicket implements IDAOTicket {
     private final String SELECT_ALL = "Select * from `ticket`";
     private final String SELECT_BY_ID = "Select * from `ticket` where `ticket_id` = ?";
+    private final String SELECT_BY_SESSION_ID = "Select * from `ticket` where `session_id` = ?";
     private final String ADD_TICKET = "Insert into `ticket`(`orders_id`,`seat_id`, `session_id`, `booked`) values (?,?,?,?)";
     private final String UPDATE_TICKET = "Update `ticket` set `orders_id` = ?, `seat_id` = ?, `session_id` = ?, `booked` = ? where `ticket_id` = ?";
     private final String DELETE_TICKET = "Delete from `ticket` where `ticket_id` = ?";
@@ -28,6 +29,28 @@ public class DAOTicket implements IDAOTicket {
         ticketList = new LinkedList<>();
         try(Connection connection = DataSource.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SELECT_ALL);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                ticketDao = new Ticket(
+                        resultSet.getLong("ticket_id"),
+                        new Session(resultSet.getLong("session_id")),
+                        new Order(resultSet.getLong("orders_id")),
+                        new Seat(resultSet.getLong("seat_id")),
+                        resultSet.getBoolean("booked"));
+                ticketList.add(ticketDao);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return ticketList;
+    }
+
+    @Override
+    public List<Ticket> findAllTicketsBySession(Session session) {
+        ticketList = new LinkedList<>();
+        try(Connection connection = DataSource.getInstance().getConnection()){
+            preparedStatement = connection.prepareStatement(SELECT_BY_SESSION_ID);
+            preparedStatement.setLong(1,session.getSessionId());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 ticketDao = new Ticket(

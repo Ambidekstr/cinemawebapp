@@ -37,7 +37,7 @@ public class DAOFilm implements IDAOFilm {
                         resultSet.getString("director"),
                         resultSet.getString("poster"),
                         resultSet.getString("trailer"),
-                        resultSet.getTime("duration"));
+                        resultSet.getString("duration"));
                 filmList.add(film);
             }
         }catch (SQLException e){
@@ -60,7 +60,7 @@ public class DAOFilm implements IDAOFilm {
                     resultSet.getString("director"),
                     resultSet.getString("poster"),
                     resultSet.getString("trailer"),
-                    resultSet.getTime("duration"));
+                    resultSet.getString("duration"));
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -73,7 +73,7 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement = connection.prepareStatement(ADD_FILM);
             preparedStatement.setString(1, filmToAdd.getFilmName());
             preparedStatement.setString(2,filmToAdd.getDirector());
-            preparedStatement.setTime(3,filmToAdd.getDuration());
+            preparedStatement.setString(3,filmToAdd.getDuration());
             preparedStatement.setString(4,filmToAdd.getPoster());
             preparedStatement.setString(5,filmToAdd.getTrailerPath());
             preparedStatement.setString(6,filmToAdd.getAgeRestriction());
@@ -104,7 +104,7 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement = connection.prepareStatement(UPDATE_FILM);
             preparedStatement.setString(1, updatedFilm.getFilmName());
             preparedStatement.setString(2,updatedFilm.getDirector());
-            preparedStatement.setTime(3,updatedFilm.getDuration());
+            preparedStatement.setString(3,updatedFilm.getDuration());
             preparedStatement.setString(4,updatedFilm.getPoster());
             preparedStatement.setString(5,updatedFilm.getTrailerPath());
             preparedStatement.setString(6,updatedFilm.getAgeRestriction());

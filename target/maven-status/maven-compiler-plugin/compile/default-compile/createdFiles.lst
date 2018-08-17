@@ -1,3 +1,4 @@
+com\anatoliivoloshyn\cinemawebapp\commands\BuyTicketCommand.class
 com\anatoliivoloshyn\cinemawebapp\dao\implementations\DAOSession.class
 com\anatoliivoloshyn\cinemawebapp\util\ControllerHelper.class
 com\anatoliivoloshyn\cinemawebapp\dao\interfaces\IDAOTicket.class
@@ -20,6 +21,7 @@ com\anatoliivoloshyn\cinemawebapp\dao\implementations\DAOLanguage.class
 com\anatoliivoloshyn\cinemawebapp\dao\implementations\DAOUser.class
 com\anatoliivoloshyn\cinemawebapp\commands\ICommand.class
 com\anatoliivoloshyn\cinemawebapp\entity\Film.class
+com\anatoliivoloshyn\cinemawebapp\service\TicketService.class
 com\anatoliivoloshyn\cinemawebapp\servlet\Controller.class
 com\anatoliivoloshyn\cinemawebapp\dao\implementations\DAOSeatCategory.class
 com\anatoliivoloshyn\cinemawebapp\dao\interfaces\IDAOSeatCategory.class

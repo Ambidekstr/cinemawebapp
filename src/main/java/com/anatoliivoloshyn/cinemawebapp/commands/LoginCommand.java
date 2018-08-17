@@ -10,7 +10,9 @@ public class LoginCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LoginService loginService = new LoginService();
-        if(loginService.login(request.getParameter("username"),request.getParameter("password"))){
+        if(loginService.login(
+                (String) request.getSession().getAttribute("username"),
+                (String)request.getSession().getAttribute("password"))){
             return "/main.jsp";
         }
         return "/error.jsp";
