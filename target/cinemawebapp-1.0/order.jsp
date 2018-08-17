@@ -12,6 +12,7 @@
     <title>Order</title>
     <h1>Your order</h1>
 </head>
+<form action="/Controller" method="post">
 <body>
 <c:forEach items="${ticketForOrder}" var="ticket">
     <table border="1">
@@ -43,7 +44,11 @@
         </tr>
         </tbody>
     </table>
+<input type="hidden" name="ticketId" value="${ticket.ticketId}">
 </c:forEach>
-<p>Total cost: <c:out value="${totalPrice}"/></p>
+<p>Total cost: <c:out value="${totalPrice}"/> UAH</p>
+<input type="hidden" name="command" value="buy">
+<input type="submit" value="Buy">
 </body>
+</form>
 </html>

@@ -15,6 +15,7 @@ public class ControllerHelper {
         commandResolver.put("index", new IndexCommand());
         commandResolver.put("buyTicket", new BuyTicketCommand());
         commandResolver.put("order", new OrderCommand());
+        commandResolver.put("buy", new BuyCommand());
     }
 
     public static ControllerHelper getInstance(){

@@ -31,7 +31,7 @@
                 <c:if test="${ticket.booked}">
                     <c:if test="${ticket.seat.seatRow < 5}">
                         <td style="background-color:darkblue;">
-                            <input type="ticketId" name="ticketId" value="${ticket.ticketId}" disabled/>
+                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}" disabled/>
                         </td>
                     </c:if>
                 </c:if>
@@ -67,5 +67,6 @@
     </tbody>
 </table>
 </form>
+<a href="/Controller">Main page</a>
 </body>
 </html>

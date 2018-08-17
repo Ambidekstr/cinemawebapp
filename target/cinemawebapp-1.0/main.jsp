@@ -7,26 +7,25 @@
 </head>
 <body>
 
-<table>
+<table cellpadding="4">
     <tr>
+        <th>Date</th>
         <th>Time</th>
         <th>Film</th>
         <th>Tickets</th>
     </tr>
     <c:forEach items="${sessionList}" var="sessionEntity">
         <tr>
-            <form action="/Controller" method="post" sc >
-            <td><c:out value="${sessionEntity.time}"/></td>
-            <td><c:out value="${sessionEntity.film.filmName}"/></td>
-            <td>
+            <form action="/Controller" method="post">
+                <td><c:out value="${sessionEntity.date}"/></td>
+                <td><c:out value="${sessionEntity.time}"/></td>
+                <td><c:out value="${sessionEntity.film.filmName}"/></td>
+                <td>
+                    <input type="hidden" name="command" value="buyTicket">
+                    <input type="hidden" name="sessionId" value="${sessionEntity.sessionId}">
+                    <input type="submit" value="Tickets">
 
-                    <%--<c:set var="sessionId" scope="session" value="${sessionEntity.sessionId}"/>--%>
-                    <%--<c:set var="command" scope="session" value="buyTicket"/>--%>
-                        <input type="hidden" name="command" value="buyTicket">
-                        <input type="hidden" name="sessionId" value="${sessionEntity.sessionId}">
-                    <input type="submit" value="Buy ticket">
-
-            </td>
+                </td>
             </form>
         </tr>
     </c:forEach>

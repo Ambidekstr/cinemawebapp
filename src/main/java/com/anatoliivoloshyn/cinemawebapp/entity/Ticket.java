@@ -15,6 +15,11 @@ public class Ticket implements Serializable {
     private boolean booked;
 
     public Ticket() {
+
+    }
+
+    public Ticket(long ticketId) {
+        this.ticketId = ticketId;
     }
 
     public Ticket(long ticketId, Session session, Seat seat, boolean booked) {
