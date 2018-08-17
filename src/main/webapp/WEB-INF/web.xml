@@ -9,9 +9,6 @@
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.anatoliivoloshyn.cinemawebapp.servlet.Controller</servlet-class>
     </servlet>
-    <welcome-file-list>
-        <welcome-file>Controller</welcome-file>
-    </welcome-file-list>
 
 
     <servlet-mapping>
