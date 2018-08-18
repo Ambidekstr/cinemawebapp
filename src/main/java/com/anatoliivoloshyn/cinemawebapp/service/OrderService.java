@@ -23,7 +23,7 @@ public class OrderService {
         IDAOTicket idaoTicket = DAOFactory.getDAOTicket();
         IDAOSession idaoSession = DAOFactory.getDAOSession();
         IDAOFilm idaoFilm = DAOFactory.getDAOFilm();
-        IDAOSeat idaoSeat = DAOFactory.getDAOSeat();
+        IDAOSeat idaoSeat = DAOFactory.getDAOSeat();    
         IDAOSeatCategory idaoSeatCategory = DAOFactory.getDAOSeatCategory();
         ticketList = new LinkedList<>();
         for (String s: request.getParameterValues("ticketId")) {
