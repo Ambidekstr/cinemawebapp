@@ -106,7 +106,7 @@ public class DAOUser implements IDAOUser {
             preparedStatement.setString(4,user.getPassword());
             preparedStatement.setString(5,user.getName());
             preparedStatement.setString(6,user.getSurname());
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement.execute();
         }catch (SQLException e){
             e.printStackTrace();
             return false;

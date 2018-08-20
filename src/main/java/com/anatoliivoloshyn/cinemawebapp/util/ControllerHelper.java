@@ -16,6 +16,9 @@ public class ControllerHelper {
         commandResolver.put("buyTicket", new BuyTicketCommand());
         commandResolver.put("order", new OrderCommand());
         commandResolver.put("buy", new BuyCommand());
+        commandResolver.put("loginUser", new LoginUserCommand());
+        commandResolver.put("registration", new RegistrationCommand());
+        commandResolver.put("registerUser", new RegisterUserCommand());
     }
 
     public static ControllerHelper getInstance(){

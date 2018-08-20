@@ -5,10 +5,7 @@ import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOOrders;
 import com.anatoliivoloshyn.cinemawebapp.entity.Order;
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,6 +19,7 @@ public class DAOOrders implements IDAOOrders {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private Order orderDao;
+    private long lastId;
 
     @Override
     public List<Order> findAllOrders() {
@@ -59,17 +57,20 @@ public class DAOOrders implements IDAOOrders {
     }
 
     @Override
-    public boolean addOrder(Order order) {
+    public Order addOrder(Order order) {
         try(Connection connection = DataSource.getInstance().getConnection()){
-            preparedStatement = connection.prepareStatement(ADD_ORDER);
+            preparedStatement = connection.prepareStatement(ADD_ORDER, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setTimestamp(1,order.getOrdersDateTime());
             preparedStatement.setLong(2,order.getUser().getUserId());
             preparedStatement.execute();
+            resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+            order.setOrdersId(resultSet.getLong(1));
         }catch (SQLException e){
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        return order;
     }
 
     @Override

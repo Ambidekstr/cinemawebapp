@@ -3,11 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
-    <title>Cinema</title>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
 
 <table cellpadding="4">
+    <tr>
+        <th colspan="4"><h2>Sessions</h2></th>
+    </tr>
     <tr>
         <th>Date</th>
         <th>Time</th>

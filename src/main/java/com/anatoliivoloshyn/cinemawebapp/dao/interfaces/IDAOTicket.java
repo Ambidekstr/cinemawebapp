@@ -10,6 +10,6 @@ public interface IDAOTicket {
     List<Ticket> findAllTicketsBySession(Session session);
     Ticket findTicketById(long id);
     boolean addTicket(Ticket ticket);
-    boolean updateTicket(Ticket ticketToUpdate, Ticket updatedTicket);
+    boolean updateTicket(Ticket updatedTicket);
     boolean deleteTicket(Ticket ticket);
 }

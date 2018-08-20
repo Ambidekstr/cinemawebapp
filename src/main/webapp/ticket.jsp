@@ -59,11 +59,13 @@
             </c:forEach>
         </tr>
     </c:forEach>
+    <c:if test="${user!=null}">
     <tr>
         <td colspan="10" align="center" >
             <input type="hidden" name="command" value="order">
             <input type="submit" value="Checkout"></td>
     </tr>
+    </c:if>
     </tbody>
 </table>
 </form>

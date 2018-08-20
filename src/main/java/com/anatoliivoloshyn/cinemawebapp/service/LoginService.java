@@ -7,13 +7,16 @@ import org.apache.log4j.Logger;
 
 public class LoginService {
     private static Logger logger = Logger.getLogger(LoginService.class);
-    public boolean login(String login, String pass){
+    public User login(String login, String pass){
         IDAOUser daoUser = DAOFactory.getDAOUser();
         User user = daoUser.findUserByLogin(login);
         if(user != null){
-            return user.getPassword().equals(pass);
+            if(user.getPassword().equals(pass)){
+                return user;
+            }
+            return null;
         }
         logger.warn("Wrong password");
-        return false;
+        return null;
     }
 }

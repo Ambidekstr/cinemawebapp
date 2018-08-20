@@ -10,9 +10,20 @@
         <servlet-class>com.anatoliivoloshyn.cinemawebapp.servlet.Controller</servlet-class>
     </servlet>
 
-
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>Filter</filter-name>
+        <filter-class>com.anatoliivoloshyn.cinemawebapp.util.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Filter</filter-name>
+        <servlet-name>Controller</servlet-name>
+    </filter-mapping>
+    <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
 </web-app>

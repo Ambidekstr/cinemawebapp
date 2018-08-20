@@ -9,7 +9,7 @@ import java.util.List;
 public interface IDAOOrders {
     List<Order> findAllOrders();
     Order findOrdersById(long id);
-    boolean addOrder(Order order);
+    Order addOrder(Order order);
     boolean deleteOrder(Order order);
     boolean updateOrder(Order orderToUpdate, Order updatedOrder);
 }

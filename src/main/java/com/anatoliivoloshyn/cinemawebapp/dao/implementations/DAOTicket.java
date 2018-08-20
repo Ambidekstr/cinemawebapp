@@ -17,7 +17,7 @@ public class DAOTicket implements IDAOTicket {
     private final String SELECT_BY_ID = "Select * from `ticket` where `ticket_id` = ?";
     private final String SELECT_BY_SESSION_ID = "Select * from `ticket` where `session_id` = ?";
     private final String ADD_TICKET = "Insert into `ticket`(`orders_id`,`seat_id`, `session_id`, `booked`) values (?,?,?,?)";
-    private final String UPDATE_TICKET = "Update `ticket` set  `seat_id` = ?, `session_id` = ?, `booked` = ? where `ticket_id` = ?";
+    private final String UPDATE_TICKET = "Update `ticket` set `orders_id`=?, `seat_id` = ?, `session_id` = ?, `booked` = ? where `ticket_id` = ?";
     private final String DELETE_TICKET = "Delete from `ticket` where `ticket_id` = ?";
     private List<Ticket> ticketList;
     private PreparedStatement preparedStatement;
@@ -103,14 +103,14 @@ public class DAOTicket implements IDAOTicket {
     }
 
     @Override
-    public boolean updateTicket(Ticket ticketToUpdate, Ticket updatedTicket) {
+    public boolean updateTicket(Ticket updatedTicket) {
         try(Connection connection = DataSource.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(UPDATE_TICKET);
-//            preparedStatement.setLong(1, updatedTicket.getOrder().getOrdersId());
-            preparedStatement.setLong(1,updatedTicket.getSeat().getSeatId());
-            preparedStatement.setLong(2,updatedTicket.getSession().getSessionId());
-            preparedStatement.setBoolean(3,updatedTicket.getBooked());
-            preparedStatement.setLong(4,ticketToUpdate.getTicketId());
+            preparedStatement.setLong(1, updatedTicket.getOrder().getOrdersId());
+            preparedStatement.setLong(2,updatedTicket.getSeat().getSeatId());
+            preparedStatement.setLong(3,updatedTicket.getSession().getSessionId());
+            preparedStatement.setBoolean(4,updatedTicket.getBooked());
+            preparedStatement.setLong(5,updatedTicket.getTicketId());
             preparedStatement.execute();
         }catch (SQLException e){
             e.printStackTrace();

@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LoginService loginService = new LoginService();
-        if(loginService.login(
-                (String) request.getSession().getAttribute("username"),
-                (String)request.getSession().getAttribute("password"))){
-            return "/main.jsp";
-        }
-        return "/error.jsp";
+        return "/login.jsp";
     }
 }
