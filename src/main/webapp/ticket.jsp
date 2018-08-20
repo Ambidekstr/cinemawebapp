@@ -24,41 +24,41 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${ticketList}" var="tickets">
-        <tr>
-            <c:forEach items="${tickets}" var="ticket">
+        <c:forEach items="${ticketList}" var="tickets">
+            <tr>
+                <c:forEach items="${tickets}" var="ticket">
 
-                <c:if test="${ticket.booked}">
-                    <c:if test="${ticket.seat.seatRow < 5}">
-                        <td style="background-color:darkblue;">
-                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}" disabled/>
-                        </td>
+                    <c:if test="${ticket.booked}">
+                        <c:if test="${ticket.seat.seatRow < 5}">
+                            <td style="background-color:indianred;">
+                                <input type="checkbox" name="ticketId" value="${ticket.ticketId}" disabled/>
+                            </td>
+                        </c:if>
                     </c:if>
-                </c:if>
-                <c:if test="${!ticket.booked}">
-                    <c:if test="${ticket.seat.seatRow < 5}">
-                        <td style="background-color:green;">
-                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}"/>
-                        </td>
+                    <c:if test="${!ticket.booked}">
+                        <c:if test="${ticket.seat.seatRow < 5}">
+                            <td style="background-color:green;">
+                                <input type="checkbox" name="ticketId" value="${ticket.ticketId}"/>
+                            </td>
+                        </c:if>
                     </c:if>
-                </c:if>
-                <c:if test="${ticket.booked}">
-                    <c:if test="${ticket.seat.seatRow == 5}">
-                        <td class="lux" style="background-color:darkblue;">
-                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}" disabled/>
-                        </td>
+                    <c:if test="${ticket.booked}">
+                        <c:if test="${ticket.seat.seatRow == 5}">
+                            <td class="lux" style="background-color:indianred;">
+                                <input type="checkbox" name="ticketId" value="${ticket.ticketId}" disabled/>
+                            </td>
+                        </c:if>
                     </c:if>
-                </c:if>
-                <c:if test="${!ticket.booked}">
-                    <c:if test="${ticket.seat.seatRow == 5}">
-                        <td style="background-color:mediumpurple;">
-                            <input type="checkbox" name="ticketId" value="${ticket.ticketId}"/>
-                        </td>
+                    <c:if test="${!ticket.booked}">
+                        <c:if test="${ticket.seat.seatRow == 5}">
+                            <td style="background-color:mediumpurple;">
+                                <input type="checkbox" name="ticketId" value="${ticket.ticketId}"/>
+                            </td>
+                        </c:if>
                     </c:if>
-                </c:if>
-            </c:forEach>
-        </tr>
-    </c:forEach>
+                </c:forEach>
+            </tr>
+        </c:forEach>
     <c:if test="${user!=null}">
     <tr>
         <td colspan="10" align="center" >

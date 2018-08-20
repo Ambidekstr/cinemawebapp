@@ -51,4 +51,5 @@
 <input type="submit" value="Buy">
 </body>
 </form>
+<a href="/Controller">Main page</a>
 </html>

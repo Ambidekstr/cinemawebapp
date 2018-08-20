@@ -18,6 +18,6 @@
     <input type="hidden" name="command" value="loginUser"/>
     <input type="submit" value="Login"/>
 </form>
-
+<a href="/Controller">Main page</a>
 </body>
 </html>

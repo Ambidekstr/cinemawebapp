@@ -25,6 +25,6 @@
     <input type="hidden" name="command" value="registerUser"/>
     <input type="submit" value="Register"/>
 </form>
-
+<a href="/Controller">Main page</a>
 </body>
 </html>

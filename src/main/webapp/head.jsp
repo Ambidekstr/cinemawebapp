@@ -28,14 +28,21 @@
 </div>
 </c:if>
 <c:if test="${user!=null}">
-    Welcome, <c:choose>
+    <div><h1>Welcome, <c:choose>
     <c:when test="${user.name != null}">
         <c:out value="${user.name}"/>!
     </c:when>
     <c:when test="${user.name == null}">
         <c:out value="${user.login}"/>!
     </c:when>
-</c:choose><c:if test="">!</c:if>
+</c:choose><c:if test="">!</c:if></h1>
+    </div>
+    <div style="display: flex; flex-direction: row; grid-gap: 4px">
+        <form style="display: block;" action="/Controller" method="get">
+            <input type="hidden" name="command" value="account"/>
+            <input type="submit" value="Account">
+        </form>
+    </div>
 </c:if>
 </body>
 </html>

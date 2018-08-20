@@ -9,7 +9,7 @@ public class BuyTicketCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         TicketService ticketService = new TicketService();
-        request.getSession().setAttribute("ticketList",ticketService.getTickets(Long.valueOf(request.getParameter("sessionId"))));
+        request.getSession().setAttribute("ticketList",ticketService.getAvailableTickets(Long.valueOf(request.getParameter("sessionId"))));
         return "/ticket.jsp";
     }
 }

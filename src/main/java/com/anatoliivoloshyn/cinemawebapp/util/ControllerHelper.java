@@ -19,6 +19,12 @@ public class ControllerHelper {
         commandResolver.put("loginUser", new LoginUserCommand());
         commandResolver.put("registration", new RegistrationCommand());
         commandResolver.put("registerUser", new RegisterUserCommand());
+        commandResolver.put("account", new AccountCommand());
+        commandResolver.put("addSession", new AddSessionCommand());
+        commandResolver.put("updateSession", new UpdateSessionCommand());
+        commandResolver.put("addNewSession", new AddNewSessionCommand());
+        commandResolver.put("updateExistingSession", new UpdateExistingSessionCommand());
+
     }
 
     public static ControllerHelper getInstance(){

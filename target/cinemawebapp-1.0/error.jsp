@@ -11,6 +11,6 @@
     <title>Error</title>
 </head>
 <body>
-error
+<a href="/Controller">Main page</a>
 </body>
 </html>

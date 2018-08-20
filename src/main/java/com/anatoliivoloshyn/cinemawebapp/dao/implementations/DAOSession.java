@@ -84,14 +84,14 @@ public class DAOSession implements IDAOSession {
     }
 
     @Override
-    public boolean updateSession(Session sessionToUpdate, Session updatedSession) {
+    public boolean updateSession(Session updatedSession) {
         try(Connection connection = DataSource.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(UPDATE_SESSION);
             preparedStatement.setLong(1,updatedSession.getFilm().getFilmId());
             preparedStatement.setDate(2,updatedSession.getDate());
             preparedStatement.setTime(3,updatedSession.getTime());
             preparedStatement.setString(4,updatedSession.getSessionLanguage());
-            preparedStatement.setLong(5,sessionToUpdate.getSessionId());
+            preparedStatement.setLong(5,updatedSession.getSessionId());
             preparedStatement.execute();
         }catch (SQLException e){
             e.printStackTrace();

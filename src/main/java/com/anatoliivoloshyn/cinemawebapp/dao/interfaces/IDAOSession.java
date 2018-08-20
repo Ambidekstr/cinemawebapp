@@ -9,6 +9,6 @@ public interface IDAOSession {
     List<Session> findAllSessions();
     Session findSessionById(long id);
     boolean addSession(Session session);
-    boolean updateSession(Session sessionToUpdate, Session updatedSession);
+    boolean updateSession(Session updatedSession);
     boolean deleteSession(Session session);
 }

@@ -12,6 +12,7 @@ import java.util.List;
 public class DAOOrders implements IDAOOrders {
     private final String SELECT_ALL = "Select * from `orders`";
     private final String SELECT_BY_ID = "Select * from `orders` where `orders_id` = ?";
+    private final String SELECT_BY_USER = "Select * from `orders` where `user_id` = ?";
     private final String ADD_ORDER = "Insert into `orders`(`orders_date_time`,`user_id`) values (?,?)";
     private final String UPDATE_ORDER = "Update `orders` set `orders_date_time` = ?, `user_id` = ? where `orders_id` = ?";
     private final String DELETE_ORDER = "Delete from `orders` where `orders_id` = ?";
@@ -19,11 +20,14 @@ public class DAOOrders implements IDAOOrders {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private Order orderDao;
-    private long lastId;
+
+    public DAOOrders() {
+        orderList = new LinkedList<>();
+        orderDao = new Order();
+    }
 
     @Override
     public List<Order> findAllOrders() {
-        orderList = new LinkedList<>();
         try(Connection connection = DataSource.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SELECT_ALL);
             resultSet = preparedStatement.executeQuery();
@@ -40,20 +44,22 @@ public class DAOOrders implements IDAOOrders {
         return orderList;
     }
 
-    public Order findOrdersById(long id) {
+    public List<Order> findOrdersByUser(long id) {
         try(Connection connection = DataSource.getInstance().getConnection()){
-            preparedStatement = connection.prepareStatement(SELECT_BY_ID);
+            preparedStatement = connection.prepareStatement(SELECT_BY_USER);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            orderDao = new Order(
-                    resultSet.getLong("orders_id"),
-                    resultSet.getTimestamp("orders_date_time"),
-                    new User(resultSet.getLong("user_id")));
+            while (resultSet.next()) {
+                orderDao = new Order(
+                        resultSet.getLong("orders_id"),
+                        resultSet.getTimestamp("orders_date_time"),
+                        new User(resultSet.getLong("user_id")));
+                orderList.add(orderDao);
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return orderDao;
+        return orderList;
     }
 
     @Override
