@@ -46,7 +46,7 @@ public class DAOUser implements IDAOUser {
                 userList.add(userDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find users", e);
         }
         return userList;
     }
@@ -70,7 +70,7 @@ public class DAOUser implements IDAOUser {
                     new Role(resultSet.getLong("role_id")),
                     new Language(resultSet.getLong("language_id")));
         }catch (SQLException e){
-            logger.error("SQLException", e);
+            logger.warn("Failed to find user by login"+login, e);
         }
         return userDao;
     }
@@ -91,7 +91,7 @@ public class DAOUser implements IDAOUser {
                     new Role(resultSet.getLong("role_id")),
                     new Language(resultSet.getLong("language_id")));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find user by id"+id, e);
         }
         return userDao;
     }
@@ -108,7 +108,7 @@ public class DAOUser implements IDAOUser {
             preparedStatement.setString(6,user.getSurname());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add user", e);
             return false;
         }
         return true;
@@ -127,7 +127,7 @@ public class DAOUser implements IDAOUser {
             preparedStatement.setLong(7,userToUpdate.getUserId());
             resultSet = preparedStatement.executeQuery();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to update user", e);
             return false;
         }
         return true;
@@ -140,7 +140,7 @@ public class DAOUser implements IDAOUser {
             preparedStatement.setLong(1,user.getUserId());
             resultSet = preparedStatement.executeQuery();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete user", e);
             return false;
         }
         return true;

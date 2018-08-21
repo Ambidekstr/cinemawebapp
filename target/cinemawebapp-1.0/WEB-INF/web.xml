@@ -9,12 +9,10 @@
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.anatoliivoloshyn.cinemawebapp.servlet.Controller</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
-
     <filter>
         <filter-name>Filter</filter-name>
         <filter-class>com.anatoliivoloshyn.cinemawebapp.util.EncodingFilter</filter-class>

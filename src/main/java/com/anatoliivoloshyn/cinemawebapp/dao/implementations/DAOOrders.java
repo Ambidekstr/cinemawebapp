@@ -4,14 +4,15 @@ import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOOrders;
 import com.anatoliivoloshyn.cinemawebapp.entity.Order;
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class DAOOrders implements IDAOOrders {
+    private static Logger logger = Logger.getLogger(DAOOrders.class);
     private final String SELECT_ALL = "Select * from `orders`";
-    private final String SELECT_BY_ID = "Select * from `orders` where `orders_id` = ?";
     private final String SELECT_BY_USER = "Select * from `orders` where `user_id` = ?";
     private final String ADD_ORDER = "Insert into `orders`(`orders_date_time`,`user_id`) values (?,?)";
     private final String UPDATE_ORDER = "Update `orders` set `orders_date_time` = ?, `user_id` = ? where `orders_id` = ?";
@@ -39,7 +40,7 @@ public class DAOOrders implements IDAOOrders {
                 orderList.add(orderDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find orders", e);
         }
         return orderList;
     }
@@ -57,7 +58,7 @@ public class DAOOrders implements IDAOOrders {
                 orderList.add(orderDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find orders by user(user id: "+id+")" , e);
         }
         return orderList;
     }
@@ -73,7 +74,7 @@ public class DAOOrders implements IDAOOrders {
             resultSet.next();
             order.setOrdersId(resultSet.getLong(1));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add order", e);
             return null;
         }
         return order;
@@ -86,7 +87,7 @@ public class DAOOrders implements IDAOOrders {
             preparedStatement.setLong(1,order.getOrdersId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete order", e);
             return false;
         }
         return true;
@@ -101,7 +102,7 @@ public class DAOOrders implements IDAOOrders {
             preparedStatement.setLong(3,orderToUpdate.getOrdersId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to update order", e);
             return false;
         }
         return true;

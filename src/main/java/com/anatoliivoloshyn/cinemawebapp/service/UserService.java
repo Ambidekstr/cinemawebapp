@@ -12,9 +12,6 @@ public class UserService {
     }
 
     public boolean registerUser(User user){
-        if(idaoUser.addUser(user)){
-            return true;
-        }
-        return false;
+        return idaoUser.addUser(user);
     }
 }

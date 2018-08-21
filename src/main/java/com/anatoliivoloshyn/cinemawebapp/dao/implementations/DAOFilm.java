@@ -4,6 +4,7 @@ import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOFilm;
 import com.anatoliivoloshyn.cinemawebapp.entity.Film;
 import com.anatoliivoloshyn.cinemawebapp.entity.Session;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DAOFilm implements IDAOFilm {
+    private static Logger logger = Logger.getLogger(DAOFilm.class);
     private final String SELECT_ALL = "Select * from `film`";
     private final String SELECT_BY_ID = "Select * from `film` where `film_id` = ?";
     private final String ADD_FILM = "Insert into `film`(`film_name`, `director`, `duration`, `poster`, `trailer`, `age_restriction`) values (?,?,?,?,?,?)";
@@ -41,7 +43,7 @@ public class DAOFilm implements IDAOFilm {
                 filmList.add(film);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find Films", e);
         }
         return filmList;
     }
@@ -62,7 +64,7 @@ public class DAOFilm implements IDAOFilm {
                     resultSet.getString("trailer"),
                     resultSet.getString("duration"));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find film by id", e);
         }
         return film;
     }
@@ -79,7 +81,7 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement.setString(6,filmToAdd.getAgeRestriction());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add film", e);
             return false;
         }
         return true;
@@ -92,7 +94,7 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement.setLong(1,filmToDelete.getFilmId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete film", e);
             return false;
         }
         return true;
@@ -111,7 +113,7 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement.setLong(7,filmToUpdate.getFilmId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to update film", e);
             return false;
         }
         return true;

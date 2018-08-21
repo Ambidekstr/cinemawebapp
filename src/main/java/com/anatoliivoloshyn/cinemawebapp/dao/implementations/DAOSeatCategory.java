@@ -3,6 +3,7 @@ package com.anatoliivoloshyn.cinemawebapp.dao.implementations;
 import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOSeatCategory;
 import com.anatoliivoloshyn.cinemawebapp.entity.SeatCategory;
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DAOSeatCategory implements IDAOSeatCategory {
+    private static Logger logger = Logger.getLogger(DAOSeatCategory.class);
     private final String SELECT_ALL = "Select * from `seat_category`";
     private final String SELECT_BY_ID = "Select * from `seat_category` where `seat_category_id` = ?";
     private final String ADD_SEAT_CATEGORY = "Insert into `seat_category`(`seat_category`, `price`) values (?,?)";
@@ -37,7 +39,7 @@ public class DAOSeatCategory implements IDAOSeatCategory {
                 seatCategoryList.add(seatCategoryDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find seat categories", e);
         }
         return seatCategoryList;
     }
@@ -54,7 +56,7 @@ public class DAOSeatCategory implements IDAOSeatCategory {
                     resultSet.getBigDecimal("price"),
                     resultSet.getString("seat_category"));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find seat category by id"+id, e);
         }
         return seatCategoryDao;
     }
@@ -67,7 +69,7 @@ public class DAOSeatCategory implements IDAOSeatCategory {
             preparedStatement.setBigDecimal(2,seatCategory.getPrice());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add seat category", e);
             return false;
         }
         return true;
@@ -82,7 +84,7 @@ public class DAOSeatCategory implements IDAOSeatCategory {
             preparedStatement.setLong(3,seatCategoryToUpdate.getSeatCategoryId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to update seat category", e);
             return false;
         }
         return true;
@@ -95,7 +97,7 @@ public class DAOSeatCategory implements IDAOSeatCategory {
             preparedStatement.setLong(1,seatCategoryToDelete.getSeatCategoryId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete seat category", e);
             return false;
         }
         return true;

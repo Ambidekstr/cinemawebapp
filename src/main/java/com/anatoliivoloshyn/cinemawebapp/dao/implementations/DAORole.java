@@ -3,6 +3,7 @@ package com.anatoliivoloshyn.cinemawebapp.dao.implementations;
 import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAORole;
 import com.anatoliivoloshyn.cinemawebapp.entity.Role;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DAORole implements IDAORole {
+    private static Logger logger = Logger.getLogger(DAORole.class);
     private final String SELECT_ALL = "Select * from `role`";
     private final String SELECT_BY_ID = "Select * from `role` where `role_id` = ?";
     private final String ADD_ROLE = "Insert into `role`(`role`) values (?)";
@@ -34,7 +36,7 @@ public class DAORole implements IDAORole {
                 roleList.add(roleDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find roles", e);
         }
         return roleList;
     }
@@ -50,7 +52,7 @@ public class DAORole implements IDAORole {
                     resultSet.getLong("role_id"),
                     resultSet.getString("role"));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find role by id"+id, e);
         }
         return roleDao;
     }
@@ -62,7 +64,7 @@ public class DAORole implements IDAORole {
             preparedStatement.setString(1,role.getRole());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add role", e);
             return false;
         }
         return true;
@@ -75,7 +77,7 @@ public class DAORole implements IDAORole {
             preparedStatement.setLong(1,role.getRoleId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete role", e);
             return false;
         }
         return true;

@@ -42,9 +42,6 @@ public class SessionService {
     }
 
     public boolean deleteSession(Session session){
-        if(daoSession.deleteSession(session)){
-            return true;
-        }
-        return false;
+        return daoSession.deleteSession(session);
     }
 }

@@ -4,6 +4,7 @@ import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOSession;
 import com.anatoliivoloshyn.cinemawebapp.entity.Film;
 import com.anatoliivoloshyn.cinemawebapp.entity.Session;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -11,6 +12,7 @@ import java.util.List;
 
 
 public class DAOSession implements IDAOSession {
+    private static Logger logger = Logger.getLogger(DAOSession.class);
     private final String SELECT_ALL = "Select * from `session`";
     private final String SELECT_BY_ID = "Select * from `session` where `session_id` = ?";
     private final String ADD_SESSION = "Insert into `session`(`film_id`, `date`, `time`) values (?,?,?)";
@@ -36,7 +38,7 @@ public class DAOSession implements IDAOSession {
                 sessionList.add(sessionDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find sessions", e);
         }
         return sessionList;
     }
@@ -55,7 +57,7 @@ public class DAOSession implements IDAOSession {
                     resultSet.getDate("date"),
                     resultSet.getString("time"));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find session by id"+id, e);
         }
         return sessionDao;
     }
@@ -72,7 +74,7 @@ public class DAOSession implements IDAOSession {
             resultSet.next();
             session.setSessionId(resultSet.getLong(1));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add session", e);
             return null;
         }
         return session;
@@ -85,10 +87,10 @@ public class DAOSession implements IDAOSession {
             preparedStatement.setLong(1,updatedSession.getFilm().getFilmId());
             preparedStatement.setDate(2,updatedSession.getDate());
             preparedStatement.setString(3,updatedSession.getTime());
-            preparedStatement.setLong(5,updatedSession.getSessionId());
+            preparedStatement.setLong(4,updatedSession.getSessionId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to update session", e);
             return false;
         }
         return true;
@@ -101,7 +103,7 @@ public class DAOSession implements IDAOSession {
             preparedStatement.setLong(1,session.getSessionId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete session", e);
             return false;
         }
         return true;

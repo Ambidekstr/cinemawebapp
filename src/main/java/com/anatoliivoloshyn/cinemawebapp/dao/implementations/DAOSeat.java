@@ -4,6 +4,7 @@ import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOSeat;
 import com.anatoliivoloshyn.cinemawebapp.entity.Seat;
 import com.anatoliivoloshyn.cinemawebapp.entity.SeatCategory;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DAOSeat implements IDAOSeat {
+    private static Logger logger = Logger.getLogger(DAOSeat.class);
     private final String SELECT_ALL = "Select * from `seat`";
     private final String SELECT_BY_ID = "Select * from `seat` where `seat_id` = ?";
     private final String ADD_SEAT = "Insert into `seat`(`seat_category_id`, `seat_row`, `seat_place`)  values (?,?,?)";
@@ -38,7 +40,7 @@ public class DAOSeat implements IDAOSeat {
                 seatList.add(seatDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find seats", e);
         }
         return seatList;
     }
@@ -56,7 +58,7 @@ public class DAOSeat implements IDAOSeat {
                     resultSet.getInt("seat_row"),
                     resultSet.getInt("seat_place"));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find seat by id"+id, e);
         }
         return seatDao;
     }
@@ -70,7 +72,7 @@ public class DAOSeat implements IDAOSeat {
             preparedStatement.setInt(3,seat.getSeatPlace());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add seat", e);
             return false;
         }
         return true;
@@ -83,7 +85,7 @@ public class DAOSeat implements IDAOSeat {
             preparedStatement.setLong(1, seat.getSeatId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete seat", e);
             return false;
         }
         return true;
@@ -99,7 +101,7 @@ public class DAOSeat implements IDAOSeat {
             preparedStatement.setLong(4,seatForUpdate.getSeatId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to update seat", e);
             return false;
         }
         return true;

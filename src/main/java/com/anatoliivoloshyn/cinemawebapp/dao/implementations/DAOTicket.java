@@ -3,6 +3,7 @@ package com.anatoliivoloshyn.cinemawebapp.dao.implementations;
 import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOTicket;
 import com.anatoliivoloshyn.cinemawebapp.entity.*;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DAOTicket implements IDAOTicket {
+    private static Logger logger = Logger.getLogger(DAOTicket.class);
     private final String SELECT_ALL = "Select * from `ticket`";
     private final String SELECT_BY_ID = "Select * from `ticket` where `ticket_id` = ?";
     private final String SELECT_BY_SESSION_ID = "Select * from `ticket` where `session_id` = ?";
@@ -41,7 +43,7 @@ public class DAOTicket implements IDAOTicket {
                 ticketList.add(ticketDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find tickets", e);
         }
         return ticketList;
     }
@@ -63,7 +65,7 @@ public class DAOTicket implements IDAOTicket {
                 ticketList.add(ticketDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find ticket by session"+session, e);
         }
         return ticketList;
     }
@@ -85,7 +87,7 @@ public class DAOTicket implements IDAOTicket {
                 ticketList.add(ticketDao);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find tickets by order"+order, e);
         }
         return ticketList;
     }
@@ -104,7 +106,7 @@ public class DAOTicket implements IDAOTicket {
                     new Seat(resultSet.getLong("seat_id")),
                     resultSet.getBoolean("booked"));
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to find ticket by id"+id, e);
         }
         return ticketDao;
     }
@@ -118,7 +120,7 @@ public class DAOTicket implements IDAOTicket {
             preparedStatement.setBoolean(3,ticket.getBooked());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to add ticket", e);
             return false;
         }
         return true;
@@ -135,7 +137,7 @@ public class DAOTicket implements IDAOTicket {
             preparedStatement.setLong(5,updatedTicket.getTicketId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to update ticket", e);
             return false;
         }
         return true;
@@ -148,7 +150,7 @@ public class DAOTicket implements IDAOTicket {
             preparedStatement.setLong(1, ticket.getTicketId());
             preparedStatement.execute();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.warn("Failed to delete ticket", e);
             return false;
         }
         return true;

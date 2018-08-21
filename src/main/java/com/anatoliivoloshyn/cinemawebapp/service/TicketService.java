@@ -108,10 +108,7 @@ public class TicketService {
         for(Ticket t: daoTicket.findAllTicketsBySession(session)){
             daoTicket.deleteTicket(t);
         }
-        if(daoTicket.findAllTicketsBySession(session).isEmpty()){
-            return true;
-        }
-        return false;
+        return daoTicket.findAllTicketsBySession(session).isEmpty();
     }
 
     private List<Ticket> fillTicket(List<Ticket> tickets){
