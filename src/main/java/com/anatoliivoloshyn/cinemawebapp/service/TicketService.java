@@ -3,7 +3,6 @@ package com.anatoliivoloshyn.cinemawebapp.service;
 import com.anatoliivoloshyn.cinemawebapp.dao.DAOFactory;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.*;
 import com.anatoliivoloshyn.cinemawebapp.entity.*;
-import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
