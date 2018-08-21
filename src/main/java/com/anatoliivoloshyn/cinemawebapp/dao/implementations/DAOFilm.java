@@ -20,6 +20,7 @@ public class DAOFilm implements IDAOFilm {
     private final String ADD_FILM = "Insert into `film`(`film_name`, `director`, `duration`, `poster`, `trailer`, `age_restriction`) values (?,?,?,?,?,?)";
     private final String UPDATE_FILM = "Update `film` set `film_name` = ?, `director` = ?, `duration` = ?, `poster` = ?, `trailer` = ?, `age_restriction` = ?, where `film_id` = ?";
     private final String DELETE_FILM = "Delete from `film` where `film_id` = ?";
+    private Connection connection;
     private List<Film> filmList;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
@@ -28,7 +29,8 @@ public class DAOFilm implements IDAOFilm {
     @Override
     public List<Film> findAllFilms() {
         filmList = new LinkedList<>();
-        try(Connection connection = DataSource.getInstance().getConnection()){
+        try{
+            connection = DataSource.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(SELECT_ALL);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
@@ -44,13 +46,20 @@ public class DAOFilm implements IDAOFilm {
             }
         }catch (SQLException e){
             logger.warn("Failed to find Films", e);
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.warn("Failed to close connection", e);
+            }
         }
         return filmList;
     }
 
     @Override
     public Film findById(long id) {
-        try(Connection connection = DataSource.getInstance().getConnection()){
+        try{
+            connection = DataSource.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setLong(1,id);
             resultSet = preparedStatement.executeQuery();
@@ -65,13 +74,21 @@ public class DAOFilm implements IDAOFilm {
                     resultSet.getString("duration"));
         }catch (SQLException e){
             logger.warn("Failed to find film by id", e);
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.warn("Failed to close connection", e);
+            }
         }
         return film;
     }
 
     @Override
     public boolean addFilm(Film filmToAdd) {
-        try(Connection connection = DataSource.getInstance().getConnection()){
+        try{
+            connection = DataSource.getInstance().getConnection();
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(ADD_FILM);
             preparedStatement.setString(1, filmToAdd.getFilmName());
             preparedStatement.setString(2,filmToAdd.getDirector());
@@ -80,22 +97,50 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement.setString(5,filmToAdd.getTrailerPath());
             preparedStatement.setString(6,filmToAdd.getAgeRestriction());
             preparedStatement.execute();
+            connection.commit();
         }catch (SQLException e){
             logger.warn("Failed to add film", e);
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                logger.warn("Failed to rollback", e1);
+            }
             return false;
+        }finally {
+            try {
+                connection.setAutoCommit(true);
+                connection.close();
+            } catch (SQLException e) {
+                logger.warn("Failed to close connection", e);
+            }
         }
         return true;
     }
 
     @Override
     public boolean deleteFilm(Film filmToDelete) {
-        try(Connection connection = DataSource.getInstance().getConnection()){
+        try{
+            connection = DataSource.getInstance().getConnection();
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(DELETE_FILM);
             preparedStatement.setLong(1,filmToDelete.getFilmId());
             preparedStatement.execute();
+            connection.commit();
         }catch (SQLException e){
             logger.warn("Failed to delete film", e);
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                logger.warn("Failed to rollback", e1);
+            }
             return false;
+        }finally {
+            try {
+                connection.setAutoCommit(true);
+                connection.close();
+            } catch (SQLException e) {
+                logger.warn("Failed to close connection", e);
+            }
         }
         return true;
     }
@@ -114,7 +159,19 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement.execute();
         }catch (SQLException e){
             logger.warn("Failed to update film", e);
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                logger.warn("Failed to rollback", e1);
+            }
             return false;
+        }finally {
+            try {
+                connection.setAutoCommit(true);
+                connection.close();
+            } catch (SQLException e) {
+                logger.warn("Failed to close connection", e);
+            }
         }
         return true;
     }
