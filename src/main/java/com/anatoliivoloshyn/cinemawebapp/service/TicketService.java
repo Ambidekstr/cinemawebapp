@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TicketService {
-    private static Logger logger = Logger.getLogger(TicketService.class);
     private List<Ticket> ticketList;
     private List<Order> orderList;
     private List<List<Ticket>> listOfTicketList;

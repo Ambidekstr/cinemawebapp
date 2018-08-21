@@ -9,7 +9,7 @@ public class AddSessionCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         FilmService filmService = new FilmService();
-        request.getSession().setAttribute("films",filmService.getAllFims());
+        request.getSession().setAttribute("films",filmService.getAllFilms());
         return "/addSession.jsp";
     }
 }

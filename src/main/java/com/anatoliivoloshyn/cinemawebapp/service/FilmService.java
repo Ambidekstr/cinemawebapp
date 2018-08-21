@@ -14,7 +14,7 @@ public class FilmService {
         idaoFilm = DAOFactory.getDAOFilm();
     }
 
-    public List<Film> getAllFims(){
+    public List<Film> getAllFilms(){
         return idaoFilm.findAllFilms();
     }
 }
