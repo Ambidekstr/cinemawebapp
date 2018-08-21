@@ -1,23 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Lena
-  Date: 20.08.2018
-  Time: 11:37
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <fmt:setBundle basename = "message" var="ms"/>
     <title>Login</title>
 </head>
 <body>
-<h1>Please enter your Login and password</h1>
+<h1><fmt:message key = "LOGIN_PAGE" bundle="${ms}"/></h1>
 <form action="/Controller" method="post">
-    <input type="email" name="username" placeholder="Email"/>
-    <input type="password" name="password" placeholder="Password"/>
+    <input type="email" name="username" placeholder="<fmt:message key = "LOGIN_PLACEHOLDER" bundle="${ms}"/>"/>
+    <input type="password" name="password" placeholder="<fmt:message key = "PASSWORD_PLACEHOLDER" bundle="${ms}"/>"/>
     <input type="hidden" name="command" value="loginUser"/>
-    <input type="submit" value="Login"/>
+    <input type="submit" value="<fmt:message key = "LOGIN_BUTTON" bundle="${ms}"/>"/>
 </form>
-<a href="/Controller">Main page</a>
+<a href="/Controller"><fmt:message key = "MAIN_PAGE" bundle="${ms}"/></a>
 </body>
 </html>

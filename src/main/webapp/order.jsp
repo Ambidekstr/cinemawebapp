@@ -1,16 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: kmbs
-  Date: 17-Aug-18
-  Time: 5:33 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <fmt:setBundle basename = "message" var="ms"/>
     <title>Order</title>
-    <h1>Your order</h1>
+    <h1><fmt:message key = "ORDER_PAGE" bundle="${ms}"/></h1>
 </head>
 <form action="/Controller" method="post">
 <body>
@@ -23,21 +18,21 @@
         </thead>
         <tbody>
         <tr>
-            <td>Time&Date</td>
+            <td><fmt:message key = "TIME_DATE" bundle="${ms}"/></td>
             <td>
                 <c:out value="${ticket.session.time}"/><br/>
                 <c:out value="${ticket.session.date}"/>
             </td>
         </tr>
         <tr>
-            <td>Seat</td>
+            <td><fmt:message key = "SEAT" bundle="${ms}"/></td>
             <td>
-                Row <c:out value="${ticket.seat.seatRow}"/><br/>
-                Place <c:out value="${ticket.seat.seatPlace}"/>
+                <fmt:message key = "ROW" bundle="${ms}"/> <c:out value="${ticket.seat.seatRow}"/><br/>
+                <fmt:message key = "PLACE" bundle="${ms}"/> <c:out value="${ticket.seat.seatPlace}"/>
             </td>
         </tr>
         <tr>
-            <td>Price</td>
+            <td><fmt:message key = "PRICE" bundle="${ms}"/></td>
             <td>
                 <c:out value="${ticket.seat.seatCategory.price}"/> UAH
             </td>
@@ -46,10 +41,10 @@
     </table>
 <input type="hidden" name="ticketId" value="${ticket.ticketId}">
 </c:forEach>
-<p>Total cost: <c:out value="${totalPrice}"/> UAH</p>
+<p><fmt:message key = "TOTAL_COST" bundle="${ms}"/>: <c:out value="${totalPrice}"/> <fmt:message key = "CURRENCY" bundle="${ms}"/></p>
 <input type="hidden" name="command" value="buy">
-<input type="submit" value="Buy">
+<input type="submit" value="<fmt:message key = "BUY_BUTTON" bundle="${ms}"/>">
 </body>
 </form>
-<a href="/Controller">Main page</a>
+<a href="/Controller"><fmt:message key = "MAIN_PAGE" bundle="${ms}"/></a>
 </html>

@@ -21,10 +21,10 @@ public class ControllerHelper {
         commandResolver.put("registerUser", new RegisterUserCommand());
         commandResolver.put("account", new AccountCommand());
         commandResolver.put("addSession", new AddSessionCommand());
-        commandResolver.put("updateSession", new UpdateSessionCommand());
+        commandResolver.put("deleteSession", new DeleteSessionCommand());
         commandResolver.put("addNewSession", new AddNewSessionCommand());
-        commandResolver.put("updateExistingSession", new UpdateExistingSessionCommand());
-
+        commandResolver.put("changeLocale", new ChangeLocaleCommand());
+        commandResolver.put("logOut", new LogOutCommand());
     }
 
     public static ControllerHelper getInstance(){

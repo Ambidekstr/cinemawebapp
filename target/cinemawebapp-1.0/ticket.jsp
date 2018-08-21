@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
-    <title>Cinema</title>
+    <fmt:setBundle basename = "message" var="ms"/>
+    <title><fmt:message key = "TICKET_PAGE" bundle="${ms}"/></title>
     <style content="text/css">
         .table tbody tr td  {
         border: 0px;
@@ -20,7 +21,7 @@
 <table class="table">
     <thead>
     <tr>
-        <th colspan="10"><h1>Screen</h1></th>
+        <th colspan="10"><h1><fmt:message key = "TICKET_PAGE" bundle="${ms}"/></h1></th>
     </tr>
     </thead>
     <tbody>
@@ -63,12 +64,12 @@
     <tr>
         <td colspan="10" align="center" >
             <input type="hidden" name="command" value="order">
-            <input type="submit" value="Checkout"></td>
+            <input type="submit" value="<fmt:message key = "CHECKOUT_BUTTON" bundle="${ms}"/>"></td>
     </tr>
     </c:if>
     </tbody>
 </table>
 </form>
-<a href="/Controller">Main page</a>
+<a href="/Controller"><fmt:message key = "MAIN_PAGE" bundle="${ms}"/></a>
 </body>
 </html>

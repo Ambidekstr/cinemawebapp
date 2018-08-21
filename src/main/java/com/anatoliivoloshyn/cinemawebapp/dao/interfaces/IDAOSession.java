@@ -8,7 +8,7 @@ import java.util.List;
 public interface IDAOSession {
     List<Session> findAllSessions();
     Session findSessionById(long id);
-    boolean addSession(Session session);
+    Session addSession(Session session);
     boolean updateSession(Session updatedSession);
     boolean deleteSession(Session session);
 }

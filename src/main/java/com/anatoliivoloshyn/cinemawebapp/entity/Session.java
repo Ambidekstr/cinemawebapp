@@ -1,7 +1,6 @@
 package com.anatoliivoloshyn.cinemawebapp.entity;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -12,9 +11,7 @@ public class Session implements Serializable {
 
     private Date date;
 
-    private Time time;
-
-    private String sessionLanguage;
+    private String time;
 
     public Session() {
 
@@ -24,12 +21,11 @@ public class Session implements Serializable {
         this.sessionId = sessionId;
     }
 
-    public Session(long sessionId, Film film, Date date, Time time, String sessionLanguage) {
+    public Session(long sessionId, Film film, Date date, String time) {
         this.sessionId = sessionId;
         this.film = film;
         this.date = date;
         this.time = time;
-        this.sessionLanguage = sessionLanguage;
     }
 
     public long getSessionId() {
@@ -56,20 +52,12 @@ public class Session implements Serializable {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
-    }
-
-    public String getSessionLanguage() {
-        return sessionLanguage;
-    }
-
-    public void setSessionLanguage(String sessionLanguage) {
-        this.sessionLanguage = sessionLanguage;
     }
 
     @Override
@@ -80,13 +68,12 @@ public class Session implements Serializable {
         return sessionId == session.sessionId &&
                 Objects.equals(film, session.film) &&
                 Objects.equals(date, session.date) &&
-                Objects.equals(time, session.time) &&
-                Objects.equals(sessionLanguage, session.sessionLanguage);
+                Objects.equals(time, session.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sessionId, film, date, time, sessionLanguage);
+        return Objects.hash(sessionId, film, date, time);
     }
 
     @Override
@@ -96,7 +83,6 @@ public class Session implements Serializable {
                 ", film=" + film +
                 ", date=" + date +
                 ", time=" + time +
-                ", sessionLanguage='" + sessionLanguage + '\'' +
                 '}';
     }
 }

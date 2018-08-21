@@ -90,6 +90,30 @@ public class TicketService {
 
     }
 
+    public boolean addTicketsForSession(Session session){
+        for(Seat s: daoSeat.findAllSeats()){
+            ticket = new Ticket();
+            ticket.setSeat(s);
+            ticket.setSession(session);
+            ticket.setBooked(false);
+            ticketList.add(ticket);
+        }
+        for(Ticket t: ticketList){
+            daoTicket.addTicket(t);
+        }
+        return true;
+    }
+
+    public boolean deleteTicketsBySession(Session session){
+        for(Ticket t: daoTicket.findAllTicketsBySession(session)){
+            daoTicket.deleteTicket(t);
+        }
+        if(daoTicket.findAllTicketsBySession(session).isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
     private List<Ticket> fillTicket(List<Ticket> tickets){
         for (Ticket ticket : tickets) {
             seat = daoSeat.findSeatById(ticket.getSeat().getSeatId());

@@ -15,7 +15,7 @@ public class OrderCommand implements ICommand {
         List<Ticket> tickets = ticketService.resolveOrder(request.getParameterValues("ticketId"));
         BigDecimal price = BigDecimal.valueOf(1);
         for (Ticket ticket : tickets) {
-            price = ticket.getSeat().getSeatCategory().getPrice();
+            price = price.add(ticket.getSeat().getSeatCategory().getPrice());
         }
         request.getSession().setAttribute("ticketForOrder", tickets );
         request.getSession().setAttribute("totalPrice", price);

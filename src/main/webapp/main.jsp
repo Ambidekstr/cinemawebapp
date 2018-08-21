@@ -3,19 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
+    <fmt:setBundle basename = "message" var="ms"/>
     <jsp:include page="head.jsp"/>
 </head>
 <body>
 
 <table cellpadding="4">
     <tr>
-        <th colspan="4"><h2>Sessions</h2></th>
+        <th colspan="4"><h2><fmt:message key = "SESSIONS" bundle="${ms}"/></h2></th>
     </tr>
     <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Film</th>
-        <th>Tickets</th>
+        <th><fmt:message key = "SESSION_DATE" bundle="${ms}"/></th>
+        <th><fmt:message key = "SESSION_TIME" bundle="${ms}"/></th>
+        <th><fmt:message key = "SESSION_FILM" bundle="${ms}"/></th>
+        <th><fmt:message key = "SESSION_TICKETS" bundle="${ms}"/></th>
     </tr>
     <c:forEach items="${sessionList}" var="sessionEntity">
         <tr>
@@ -26,7 +27,7 @@
                 <td>
                     <input type="hidden" name="command" value="buyTicket">
                     <input type="hidden" name="sessionId" value="${sessionEntity.sessionId}">
-                    <input type="submit" value="Tickets">
+                    <input type="submit" value="<fmt:message key = "SESSION_TICKETS" bundle="${ms}"/>">
 
                 </td>
             </form>

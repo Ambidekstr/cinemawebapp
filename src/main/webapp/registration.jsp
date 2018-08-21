@@ -1,30 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Lena
-  Date: 20.08.2018
-  Time: 13:45
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Registration</title>
+    <fmt:setBundle basename = "message" var="ms"/>
+    <title><fmt:message key = "REGISTRATION" bundle="${ms}"/></title>
 </head>
 <body>
-<h2>Please enter your information</h2>
+<h2><fmt:message key = "REGISTER_PAGE" bundle="${ms}"/></h2>
 <form action="/Controller" method="post" style=" display:  flex; flex-direction:  column; width: 30%;"
 >
-    <label>Email</label>
-    <input type="email" name="email" placeholder="Email" required/>
-    <label>Password</label>
-    <input type="password" name="password" placeholder="Password" required/>
-    <label>Name</label>
-    <input type="text" name="name" placeholder="Your first name"/>
-    <label>Surname</label>
-    <input type="text" name="surname" placeholder="Your last name"/>
+    <label><fmt:message key = "LOGIN_PLACEHOLDER" bundle="${ms}"/></label>
+    <input type="email" name="email" placeholder="<fmt:message key = "LOGIN_PLACEHOLDER" bundle="${ms}"/>" required/>
+    <label><fmt:message key = "PASSWORD_PLACEHOLDER" bundle="${ms}"/></label>
+    <input type="password" name="password" placeholder="<fmt:message key = "PASSWORD_PLACEHOLDER" bundle="${ms}"/>" required/>
+    <label><fmt:message key = "NAME" bundle="${ms}"/></label>
+    <input type="text" name="name" placeholder="<fmt:message key = "NAME" bundle="${ms}"/>"/>
+    <label><fmt:message key = "SURNAME" bundle="${ms}"/></label>
+    <input type="text" name="surname" placeholder="<fmt:message key = "SURNAME" bundle="${ms}"/>"/>
     <input type="hidden" name="command" value="registerUser"/>
-    <input type="submit" value="Register"/>
+    <input type="submit" value="<fmt:message key = "REGISTRATION" bundle="${ms}"/>"/>
 </form>
-<a href="/Controller">Main page</a>
+<a href="/Controller"><fmt:message key = "MAIN_PAGE" bundle="${ms}"/></a>
 </body>
 </html>

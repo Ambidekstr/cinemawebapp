@@ -5,20 +5,16 @@ import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOSession;
 import com.anatoliivoloshyn.cinemawebapp.entity.Film;
 import com.anatoliivoloshyn.cinemawebapp.entity.Session;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.sql.Date;
 
 
 public class DAOSession implements IDAOSession {
     private final String SELECT_ALL = "Select * from `session`";
     private final String SELECT_BY_ID = "Select * from `session` where `session_id` = ?";
-    private final String ADD_SESSION = "Insert into `session`(`film_id`, `date`, `time`, `session_language`) values (?,?,?,?)";
-    private final String UPDATE_SESSION = "Update `session` set `film_id` = ?, `date` = ?, `time` = ?, `session_language` = ? where `session_id` = ?";
+    private final String ADD_SESSION = "Insert into `session`(`film_id`, `date`, `time`) values (?,?,?)";
+    private final String UPDATE_SESSION = "Update `session` set `film_id` = ?, `date` = ?, `time` = ? where `session_id` = ?";
     private final String DELETE_SESSION = "Delete from `session` where `session_id` = ?";
     private List<Session> sessionList;
     private PreparedStatement preparedStatement;
@@ -36,8 +32,7 @@ public class DAOSession implements IDAOSession {
                         resultSet.getLong("session_id"),
                         new Film(resultSet.getLong("film_id")),
                         resultSet.getDate("date"),
-                        resultSet.getTime("time"),
-                        resultSet.getString("session_language"));
+                        resultSet.getString("time"));
                 sessionList.add(sessionDao);
             }
         }catch (SQLException e){
@@ -58,9 +53,7 @@ public class DAOSession implements IDAOSession {
                     resultSet.getLong("session_id"),
                     new Film(resultSet.getLong("film_id")),
                     resultSet.getDate("date"),
-                    resultSet.getTime("time"),
-                    resultSet.getString("session_language"));
-            sessionList.add(sessionDao);
+                    resultSet.getString("time"));
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -68,19 +61,21 @@ public class DAOSession implements IDAOSession {
     }
 
     @Override
-    public boolean addSession(Session session) {
+    public Session addSession(Session session) {
         try(Connection connection = DataSource.getInstance().getConnection()){
-            preparedStatement = connection.prepareStatement(ADD_SESSION);
+            preparedStatement = connection.prepareStatement(ADD_SESSION,Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1,session.getFilm().getFilmId());
             preparedStatement.setDate(2,session.getDate());
-            preparedStatement.setTime(3,session.getTime());
-            preparedStatement.setString(4,session.getSessionLanguage());
+            preparedStatement.setString(3,session.getTime());
             preparedStatement.execute();
+            resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+            session.setSessionId(resultSet.getLong(1));
         }catch (SQLException e){
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        return session;
     }
 
     @Override
@@ -89,8 +84,7 @@ public class DAOSession implements IDAOSession {
             preparedStatement = connection.prepareStatement(UPDATE_SESSION);
             preparedStatement.setLong(1,updatedSession.getFilm().getFilmId());
             preparedStatement.setDate(2,updatedSession.getDate());
-            preparedStatement.setTime(3,updatedSession.getTime());
-            preparedStatement.setString(4,updatedSession.getSessionLanguage());
+            preparedStatement.setString(3,updatedSession.getTime());
             preparedStatement.setLong(5,updatedSession.getSessionId());
             preparedStatement.execute();
         }catch (SQLException e){

@@ -33,15 +33,16 @@ public class SessionService {
         return daoSession.findSessionById(sessionId);
     }
 
-    public boolean updateExistingSession(Session session){
-        if(daoSession.updateSession(session)){
-            return true;
+    public Session addSession(Session session){
+        Session s = daoSession.addSession(session);
+        if(s!=null){
+            return s;
         }
-        return false;
+        return null;
     }
 
-    public boolean addSession(Session session){
-        if(daoSession.addSession(session)){
+    public boolean deleteSession(Session session){
+        if(daoSession.deleteSession(session)){
             return true;
         }
         return false;

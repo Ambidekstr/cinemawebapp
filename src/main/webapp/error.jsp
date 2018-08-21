@@ -1,16 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kmbs
-  Date: 17-Aug-18
-  Time: 12:41 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <fmt:setBundle basename = "message" var="ms"/>
     <title>Error</title>
 </head>
 <body>
-<a href="/Controller">Main page</a>
+<h1><fmt:message key = "ERROR_PAGE" bundle="${ms}"/></h1>
+<a href="/Controller"><fmt:message key = "BACK_TO_SAFETY_BUTTON" bundle="${ms}"/></a>
 </body>
 </html>
