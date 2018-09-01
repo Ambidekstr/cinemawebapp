@@ -49,6 +49,15 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.geronimo.components/geronimo-transaction -->
+        <dependency>
+            <groupId>org.apache.geronimo.components</groupId>
+            <artifactId>geronimo-transaction</artifactId>
+            <version>3.1.4</version>
+        </dependency>
+
+
+
 
     </dependencies>
 

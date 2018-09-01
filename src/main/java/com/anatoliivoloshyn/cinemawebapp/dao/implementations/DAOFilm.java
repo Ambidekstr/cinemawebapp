@@ -146,7 +146,7 @@ public class DAOFilm implements IDAOFilm {
     }
 
     @Override
-    public boolean updateFilm(Film filmToUpdate, Film updatedFilm) {
+    public boolean updateFilm(Film updatedFilm) {
         try(Connection connection = DataSource.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(UPDATE_FILM);
             preparedStatement.setString(1, updatedFilm.getFilmName());
@@ -155,7 +155,7 @@ public class DAOFilm implements IDAOFilm {
             preparedStatement.setString(4,updatedFilm.getPoster());
             preparedStatement.setString(5,updatedFilm.getTrailerPath());
             preparedStatement.setString(6,updatedFilm.getAgeRestriction());
-            preparedStatement.setLong(7,filmToUpdate.getFilmId());
+            preparedStatement.setLong(7,updatedFilm.getFilmId());
             preparedStatement.execute();
         }catch (SQLException e){
             logger.warn("Failed to update film", e);

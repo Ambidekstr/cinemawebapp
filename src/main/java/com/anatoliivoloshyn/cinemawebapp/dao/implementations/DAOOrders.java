@@ -140,14 +140,14 @@ public class DAOOrders implements IDAOOrders {
     }
 
     @Override
-    public boolean updateOrder(Order orderToUpdate, Order updatedOrder) {
+    public boolean updateOrder(Order updatedOrder) {
         try{
             connection = DataSource.getInstance().getConnection();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(UPDATE_ORDER);
             preparedStatement.setTimestamp(1,updatedOrder.getOrdersDateTime());
             preparedStatement.setLong(2,updatedOrder.getUser().getUserId());
-            preparedStatement.setLong(3,orderToUpdate.getOrdersId());
+            preparedStatement.setLong(3,updatedOrder.getOrdersId());
             preparedStatement.execute();
             connection.commit();
         }catch (SQLException e){

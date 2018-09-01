@@ -19,6 +19,7 @@ public class AddNewSessionCommand implements ICommand{
         session.setFilm(new Film(Long.valueOf(request.getParameter("selectedFilm"))));
         session.setDate(Date.valueOf(request.getParameter("date")));
         session.setTime(request.getParameter("time"));
+
         session = sessionService.addSession(session);
         if(session != null){
             if(ticketService.addTicketsForSession(session)){
