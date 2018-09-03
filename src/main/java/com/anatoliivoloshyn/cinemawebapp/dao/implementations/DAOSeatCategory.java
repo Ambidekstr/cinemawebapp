@@ -106,14 +106,14 @@ public class DAOSeatCategory implements IDAOSeatCategory {
     }
 
     @Override
-    public boolean updateSeatCategory(SeatCategory seatCategoryToUpdate, SeatCategory updatedSeatCategory) {
+    public boolean updateSeatCategory(SeatCategory updatedSeatCategory) {
         try{
             connection = DataSource.getInstance().getConnection();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(UPDATE_SEAT_CATEGORY);
             preparedStatement.setString(1, updatedSeatCategory.getSeatCategory());
             preparedStatement.setBigDecimal(2,updatedSeatCategory.getPrice());
-            preparedStatement.setLong(3,seatCategoryToUpdate.getSeatCategoryId());
+            preparedStatement.setLong(3,updatedSeatCategory.getSeatCategoryId());
             preparedStatement.execute();
             connection.commit();
         }catch (SQLException e){

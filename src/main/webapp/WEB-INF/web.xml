@@ -16,9 +16,18 @@
     <filter>
         <filter-name>Filter</filter-name>
         <filter-class>com.anatoliivoloshyn.cinemawebapp.util.EncodingFilter</filter-class>
+
+    </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>com.anatoliivoloshyn.cinemawebapp.util.AdminFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>Filter</filter-name>
+        <servlet-name>Controller</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
         <servlet-name>Controller</servlet-name>
     </filter-mapping>
     <session-config>

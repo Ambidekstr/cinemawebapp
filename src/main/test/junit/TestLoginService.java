@@ -25,7 +25,6 @@ public class TestLoginService {
         user.setUserId(1L);
         user.setPassword(password);
         user.setLogin(login);
-        user.setLanguage(new Language(1L));
         user.setRole(new Role(1L));
         user.setName("Anatolii");
         user.setSurname("Voloshyn");

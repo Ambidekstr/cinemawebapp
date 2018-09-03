@@ -9,6 +9,6 @@ public interface IDAOSeatCategory {
     List<SeatCategory> findAllSeatCategory();
     SeatCategory findSeatCategoryById(long id);
     boolean addSeatCategory(SeatCategory seatCategory);
-    boolean updateSeatCategory(SeatCategory seatCategoryToUpdate, SeatCategory updatedSeatCategory);
+    boolean updateSeatCategory(SeatCategory updatedSeatCategory);
     boolean deleteSeatCategory(SeatCategory seatCategoryToDelete);
 }

@@ -8,10 +8,6 @@ public class DAOFactory {
         return new DAOFilm();
     }
 
-    public static IDAOLanguage getDAOLanguage(){
-        return new DAOLanguage();
-    }
-
     public static IDAOOrders getDAOOrders(){
         return new DAOOrders();
     }

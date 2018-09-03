@@ -12,7 +12,7 @@ public class User implements Serializable {
     private String surname;
 
     private Role role;
-    private Language language;
+
 
     public User() {
     }
@@ -21,14 +21,13 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public User(long userId, String login, String password, String name, String surname, Role role, Language language) {
+    public User(long userId, String login, String password, String name, String surname, Role role) {
         this.userId = userId;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.role = role;
-        this.language = language;
     }
 
 
@@ -80,14 +79,6 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public Language getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,7 +105,6 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", role=" + role +
-                ", language=" + language +
                 '}';
     }
 }

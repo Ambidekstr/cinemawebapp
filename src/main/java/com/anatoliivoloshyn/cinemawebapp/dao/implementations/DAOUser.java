@@ -20,8 +20,8 @@ public class DAOUser implements IDAOUser {
     private final String SELECT_ALL = "Select * from `user`";
     private final String SELECT_BY_LOGIN = "Select * from `user` where `login` = ?";
     private final String SELECT_BY_ID = "Select * from `user` where `user_id` = ?";
-    private final String ADD_USER = "Insert into `user`(`language_id`, `role_id`, `login`, `password`, `name`, `surname`) values (?,?,?,?,?,?)";
-    private final String UPDATE_USER = "Update `user` set `language_id` = ?, `role_id` = ?, `login` = ?, `password` = ?, `name` = ?, `surname` = ? where `user_id` = ?";
+    private final String ADD_USER = "Insert into `user`(`role_id`, `login`, `password`, `name`, `surname`) values (?,?,?,?,?,?)";
+    private final String UPDATE_USER = "Update `user` set `role_id` = ?, `login` = ?, `password` = ?, `name` = ?, `surname` = ? where `user_id` = ?";
     private final String DELETE_USER = "Delete from `user` where `user_id` = ?";
     private Connection connection;
     private List<User> userList;
@@ -43,8 +43,7 @@ public class DAOUser implements IDAOUser {
                         resultSet.getString("password"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
-                        new Role(resultSet.getLong("role_id")),
-                        new Language(resultSet.getLong("language_id")));
+                        new Role(resultSet.getLong("role_id")));
                 userList.add(userDao);
             }
         }catch (SQLException e){
@@ -63,7 +62,7 @@ public class DAOUser implements IDAOUser {
     public User findUserByLogin(String login) {
         try{
             connection = DataSource.getInstance().getConnection();
-            logger.info("Retriving a connection");
+            logger.info("Retrieving a connection");
             preparedStatement = connection.prepareStatement(SELECT_BY_LOGIN);
             preparedStatement.setString(1,login);
             logger.info("Preparing statement");
@@ -76,8 +75,7 @@ public class DAOUser implements IDAOUser {
                     resultSet.getString("password"),
                     resultSet.getString("name"),
                     resultSet.getString("surname"),
-                    new Role(resultSet.getLong("role_id")),
-                    new Language(resultSet.getLong("language_id")));
+                    new Role(resultSet.getLong("role_id")));
         }catch (SQLException e){
             logger.warn("Failed to find user by login"+login, e);
         }finally {
@@ -104,8 +102,7 @@ public class DAOUser implements IDAOUser {
                     resultSet.getString("password"),
                     resultSet.getString("name"),
                     resultSet.getString("surname"),
-                    new Role(resultSet.getLong("role_id")),
-                    new Language(resultSet.getLong("language_id")));
+                    new Role(resultSet.getLong("role_id")));
         }catch (SQLException e){
             logger.warn("Failed to find user by id"+id, e);
         }finally {
@@ -124,12 +121,11 @@ public class DAOUser implements IDAOUser {
             connection = DataSource.getInstance().getConnection();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(ADD_USER);
-            preparedStatement.setLong(1,user.getLanguage().getLanguageId());
-            preparedStatement.setLong(2,user.getRole().getRoleId());
-            preparedStatement.setString(3,user.getLogin());
-            preparedStatement.setString(4,user.getPassword());
-            preparedStatement.setString(5,user.getName());
-            preparedStatement.setString(6,user.getSurname());
+            preparedStatement.setLong(1,user.getRole().getRoleId());
+            preparedStatement.setString(2,user.getLogin());
+            preparedStatement.setString(3,user.getPassword());
+            preparedStatement.setString(4,user.getName());
+            preparedStatement.setString(5,user.getSurname());
             preparedStatement.execute();
             connection.commit();
         }catch (SQLException e){
@@ -152,18 +148,17 @@ public class DAOUser implements IDAOUser {
     }
 
     @Override
-    public boolean updateUser(User userToUpdate, User updatedUser) {
+    public boolean updateUser(User updatedUser) {
         try{
             connection = DataSource.getInstance().getConnection();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(UPDATE_USER);
-            preparedStatement.setLong(1,updatedUser.getLanguage().getLanguageId());
-            preparedStatement.setLong(2,updatedUser.getRole().getRoleId());
-            preparedStatement.setString(3,updatedUser.getLogin());
-            preparedStatement.setString(4,updatedUser.getPassword());
-            preparedStatement.setString(5,updatedUser.getName());
-            preparedStatement.setString(6,updatedUser.getSurname());
-            preparedStatement.setLong(7,userToUpdate.getUserId());
+            preparedStatement.setLong(1,updatedUser.getRole().getRoleId());
+            preparedStatement.setString(2,updatedUser.getLogin());
+            preparedStatement.setString(3,updatedUser.getPassword());
+            preparedStatement.setString(4,updatedUser.getName());
+            preparedStatement.setString(5,updatedUser.getSurname());
+            preparedStatement.setLong(6,updatedUser.getUserId());
             preparedStatement.execute();
             connection.commit();
         }catch (SQLException e){

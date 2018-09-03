@@ -96,10 +96,7 @@ public class TicketService {
             ticket.setBooked(false);
             ticketList.add(ticket);
         }
-        for(Ticket t: ticketList){
-            daoTicket.addTicket(t);
-        }
-        return true;
+        return daoTicket.addTicket(ticketList.toArray(new Ticket[ticketList.size()]));
     }
 
     public boolean deleteTicketsBySession(Session session){

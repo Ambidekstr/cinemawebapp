@@ -137,7 +137,7 @@ public class DAOSeat implements IDAOSeat {
     }
 
     @Override
-    public boolean updateSeat(Seat seatForUpdate, Seat updatedSeat) {
+    public boolean updateSeat(Seat updatedSeat) {
         try{
             connection = DataSource.getInstance().getConnection();
             connection.setAutoCommit(false);
@@ -145,7 +145,7 @@ public class DAOSeat implements IDAOSeat {
             preparedStatement.setLong(1, updatedSeat.getSeatCategory().getSeatCategoryId());
             preparedStatement.setInt(2,updatedSeat.getSeatRow());
             preparedStatement.setInt(3,updatedSeat.getSeatPlace());
-            preparedStatement.setLong(4,seatForUpdate.getSeatId());
+            preparedStatement.setLong(4,updatedSeat.getSeatId());
             preparedStatement.execute();
             connection.commit();
         }catch (SQLException e){

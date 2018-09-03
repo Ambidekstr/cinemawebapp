@@ -141,15 +141,17 @@ public class DAOTicket implements IDAOTicket {
     }
 
     @Override
-    public boolean addTicket(Ticket ticket) {
+    public boolean addTicket(Ticket... tickets) {
         try{
             connection = DataSource.getInstance().getConnection();
             connection.setAutoCommit(false);
-            preparedStatement = connection.prepareStatement(ADD_TICKET);
-            preparedStatement.setLong(1,ticket.getSeat().getSeatId());
-            preparedStatement.setLong(2,ticket.getSession().getSessionId());
-            preparedStatement.setBoolean(3,ticket.getBooked());
-            preparedStatement.execute();
+            for (Ticket ticket: tickets) {
+                preparedStatement = connection.prepareStatement(ADD_TICKET);
+                preparedStatement.setLong(1, ticket.getSeat().getSeatId());
+                preparedStatement.setLong(2, ticket.getSession().getSessionId());
+                preparedStatement.setBoolean(3, ticket.getBooked());
+                preparedStatement.execute();
+            }
             connection.commit();
         }catch (SQLException e){
             logger.warn("Failed to add ticket", e);

@@ -17,7 +17,7 @@ public final class DataSource {
             poolOfConnections.setDriverClassName("com.mysql.cj.jdbc.Driver");
             poolOfConnections.setUrl("jdbc:mysql://127.0.0.1:3306/cinema_db?useUnicode=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Kiev");
             poolOfConnections.setUsername("root");
-            poolOfConnections.setPassword("root");
+            poolOfConnections.setPassword("1234");
             logger.info("Connection pool created");
     }
 

@@ -11,7 +11,7 @@ public interface IDAOTicket {
     List<Ticket> findAllTicketsBySession(Session session);
     List<Ticket> findAllTicketsByOrder(Order order);
     Ticket findTicketById(long id);
-    boolean addTicket(Ticket ticket);
+    boolean addTicket(Ticket... tickets);
     boolean updateTicket(Ticket updatedTicket);
     boolean deleteTicket(Ticket ticket);
 }

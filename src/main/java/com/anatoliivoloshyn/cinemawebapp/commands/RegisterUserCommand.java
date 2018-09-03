@@ -15,7 +15,6 @@ public class RegisterUserCommand implements ICommand {
         User user = new User();
         user.setPassword(request.getParameter("password"));
         user.setLogin(request.getParameter("email"));
-        user.setLanguage(new Language(1l));
         user.setRole(new Role(2l));
         user.setName(request.getParameter("name"));
         user.setSurname(request.getParameter("surname"));

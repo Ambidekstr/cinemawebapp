@@ -9,6 +9,6 @@ public interface IDAOUser {
     User findUserByLogin(String login);
     User findUserById(long id);
     boolean addUser(User user);
-    boolean updateUser(User userToUpdate, User updatedUser);
+    boolean updateUser(User updatedUser);
     boolean deleteUser(User user);
 }

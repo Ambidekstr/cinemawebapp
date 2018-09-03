@@ -9,5 +9,5 @@ public interface IDAOSeat {
     Seat findSeatById(long id);
     boolean addSeat(Seat seat);
     boolean deleteSeat(Seat seat);
-    boolean updateSeat(Seat seatForUpdate, Seat updatedSeat);
+    boolean updateSeat(Seat updatedSeat);
 }

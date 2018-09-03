@@ -25,8 +25,10 @@ public class AddNewSessionCommand implements ICommand{
             if(ticketService.addTicketsForSession(session)){
                 return "/Controller?command=account";
             }
+            sessionService.deleteSession(session);
             return "/error.jsp";
         }
+        sessionService.deleteSession(session);
         return "/error.jsp";
     }
 }
