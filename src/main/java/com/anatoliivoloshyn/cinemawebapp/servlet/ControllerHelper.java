@@ -1,10 +1,12 @@
-package com.anatoliivoloshyn.cinemawebapp.util;
+package com.anatoliivoloshyn.cinemawebapp.servlet;
 
 import com.anatoliivoloshyn.cinemawebapp.commands.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-
+/**
+ * Class helper that resolves which command should be used to handle the request
+ */
 public class ControllerHelper {
     private static ControllerHelper controllerHelper;
     private HashMap<String,ICommand> commandResolver;

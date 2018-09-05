@@ -205,13 +205,15 @@ public class DAOTicket implements IDAOTicket {
     }
 
     @Override
-    public boolean deleteTicket(Ticket ticket) {
+    public boolean deleteTicket(Ticket... tickets) {
         try{
             connection = DataSource.getInstance().getConnection();
             connection.setAutoCommit(false);
-            preparedStatement = connection.prepareStatement(DELETE_TICKET);
-            preparedStatement.setLong(1, ticket.getTicketId());
-            preparedStatement.execute();
+            for (Ticket ticket: tickets) {
+                preparedStatement = connection.prepareStatement(DELETE_TICKET);
+                preparedStatement.setLong(1, ticket.getTicketId());
+                preparedStatement.execute();
+            }
             connection.commit();
         }catch (SQLException e){
             logger.warn("Failed to delete ticket", e);

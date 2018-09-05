@@ -1,4 +1,4 @@
-package com.anatoliivoloshyn.cinemawebapp.util;
+package com.anatoliivoloshyn.cinemawebapp.filters;
 
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
 
@@ -6,10 +6,12 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * Filter class that resolves access of users to admin pages
+ */
 public class AdminFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig){
 
     }
 

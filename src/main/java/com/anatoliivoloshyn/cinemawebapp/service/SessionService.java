@@ -8,9 +8,10 @@ import org.apache.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Service class that is responsible for work with Sessions
+ */
 public class SessionService {
-    private static Logger logger = Logger.getLogger(SessionService.class);
     private List<Session> sessions;
     private IDAOSession daoSession;
     private IDAOFilm daoFilm;
@@ -20,7 +21,10 @@ public class SessionService {
         daoFilm = DAOFactory.getDAOFilm();
         sessions = new LinkedList<>();
     }
-
+    /**
+     * Method that finds all Sessions in data base.
+     * @return List of Sessions if empty than there is no Sessions in the data base.
+     */
     public List<Session> getSessions(){
         sessions = daoSession.findAllSessions();
         for (Session s: sessions) {
@@ -28,11 +32,19 @@ public class SessionService {
         }
         return sessions;
     }
-
+    /**
+     * Method that finds Session that correspond to Session id.
+     * @param sessionId Session id.
+     * @return Session if null than there is no such Session.
+     */
     public Session getSessionById(long sessionId){
         return daoSession.findSessionById(sessionId);
     }
-
+    /**
+     * Method that add a new Session to the data base.
+     * @param session Session that you want to add.
+     * @return Session if null than there is no such Session.
+     */
     public Session addSession(Session session){
         Session s = daoSession.addSession(session);
         if(s!=null){
@@ -40,7 +52,11 @@ public class SessionService {
         }
         return null;
     }
-
+    /**
+     * Method that deletes an existing Session from the data base.
+     * @param session Session that you want to delete.
+     * @return True if Session is deleted successfully and false if not.
+     */
     public boolean deleteSession(Session session){
         return daoSession.deleteSession(session);
     }

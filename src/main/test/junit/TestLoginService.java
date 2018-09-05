@@ -1,9 +1,8 @@
 package junit;
 
-import com.anatoliivoloshyn.cinemawebapp.entity.Language;
 import com.anatoliivoloshyn.cinemawebapp.entity.Role;
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
-import com.anatoliivoloshyn.cinemawebapp.service.LoginService;
+import com.anatoliivoloshyn.cinemawebapp.service.UserService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,14 +10,14 @@ import org.junit.Test;
 
 public class TestLoginService {
 
-    private LoginService loginService;
+    private UserService userService;
     private String login;
     private String password;
     private User user;
 
     @Before
     public void setUp(){
-        loginService = new LoginService();
+        userService = new UserService();
         login = "aavolosh@gmail.com";
         password = "admin";
         user = new User();
@@ -32,9 +31,9 @@ public class TestLoginService {
 
     @Test
     public void testLogin(){
-        Assert.assertEquals(user,loginService.login(login,password));
-        Assert.assertNull(loginService.login("",password));
-        Assert.assertNull(loginService.login(login,""));
+        Assert.assertEquals(user, userService.login(login,password));
+        Assert.assertNull(userService.login("",password));
+        Assert.assertNull(userService.login(login,""));
         return;
     }
 
@@ -43,6 +42,6 @@ public class TestLoginService {
         user = null;
         password = null;
         login = null;
-        loginService = null;
+        userService = null;
     }
 }

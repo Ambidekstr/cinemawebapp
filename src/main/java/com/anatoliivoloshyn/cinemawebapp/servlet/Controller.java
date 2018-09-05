@@ -1,7 +1,6 @@
 package com.anatoliivoloshyn.cinemawebapp.servlet;
 
 import com.anatoliivoloshyn.cinemawebapp.commands.ICommand;
-import com.anatoliivoloshyn.cinemawebapp.util.ControllerHelper;
 
 
 import javax.servlet.ServletException;

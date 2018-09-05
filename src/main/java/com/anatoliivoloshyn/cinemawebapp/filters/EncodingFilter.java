@@ -1,8 +1,10 @@
-package com.anatoliivoloshyn.cinemawebapp.util;
+package com.anatoliivoloshyn.cinemawebapp.filters;
 
 import javax.servlet.*;
 import java.io.IOException;
-
+/**
+ * Filter class that sets encoding on every request and response to UTF-8
+ */
 public class EncodingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {

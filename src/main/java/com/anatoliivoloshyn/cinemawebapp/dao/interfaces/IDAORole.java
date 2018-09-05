@@ -13,7 +13,7 @@ public interface IDAORole {
      */
     List<Role> findAllRoles();
     /**
-     * Method that finds all Roles that correspond to Role id.
+     * Method that finds Role that correspond to Role id.
      * @param id Role id.
      * @return Role if null than there is no such Role.
      */

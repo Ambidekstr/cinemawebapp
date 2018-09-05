@@ -3,10 +3,14 @@ package com.anatoliivoloshyn.cinemawebapp.commands;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /**
- * Command that returns a String that represent uri based on the parameters from
- * handling HttpServletRequest and HttpServletResponse
- * @return URI
+ * Command that handles HttpServletRequest and HttpServletResponse.
  */
 public interface ICommand {
+    /**
+     * Method that handles HttpServletRequest and HttpServletResponse based on the parameters
+     * @param request HttpServletRequest.
+     * @param response HttpServletResponse.
+     * @return String that is URL
+     */
     String execute(HttpServletRequest request, HttpServletResponse response);
 }
