@@ -19,7 +19,7 @@ public class DAOUser implements IDAOUser {
     private final String SELECT_ALL = "Select * from `user`";
     private final String SELECT_BY_LOGIN = "Select * from `user` where `login` = ?";
     private final String SELECT_BY_ID = "Select * from `user` where `user_id` = ?";
-    private final String ADD_USER = "Insert into `user`(`role_id`, `login`, `password`, `name`, `surname`) values (?,?,?,?,?,?)";
+    private final String ADD_USER = "Insert into `user`(`role_id`, `login`, `password`, `name`, `surname`) values (?,?,?,?,?)";
     private final String UPDATE_USER = "Update `user` set `role_id` = ?, `login` = ?, `password` = ?, `name` = ?, `surname` = ? where `user_id` = ?";
     private final String DELETE_USER = "Delete from `user` where `user_id` = ?";
     private Connection connection;
