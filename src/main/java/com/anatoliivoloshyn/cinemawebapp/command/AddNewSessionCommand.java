@@ -1,4 +1,4 @@
-package com.anatoliivoloshyn.cinemawebapp.commands;
+package com.anatoliivoloshyn.cinemawebapp.command;
 
 import com.anatoliivoloshyn.cinemawebapp.entity.Film;
 import com.anatoliivoloshyn.cinemawebapp.entity.Session;
@@ -8,7 +8,6 @@ import com.anatoliivoloshyn.cinemawebapp.service.TicketService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
-import java.sql.Time;
 
 public class AddNewSessionCommand implements ICommand{
     @Override

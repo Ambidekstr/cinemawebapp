@@ -1,6 +1,6 @@
 package com.anatoliivoloshyn.cinemawebapp.servlet;
 
-import com.anatoliivoloshyn.cinemawebapp.commands.*;
+import com.anatoliivoloshyn.cinemawebapp.command.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;

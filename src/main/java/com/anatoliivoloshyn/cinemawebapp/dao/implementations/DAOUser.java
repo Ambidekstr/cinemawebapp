@@ -2,7 +2,6 @@ package com.anatoliivoloshyn.cinemawebapp.dao.implementations;
 
 import com.anatoliivoloshyn.cinemawebapp.dao.DataSource;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOUser;
-import com.anatoliivoloshyn.cinemawebapp.entity.Language;
 import com.anatoliivoloshyn.cinemawebapp.entity.Role;
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
 import org.apache.log4j.Logger;

@@ -26,17 +26,17 @@ public class TestSessionService {
     public void testGetSessions(){
         session = new Session();
         film = new Film();
-        film.setFilmId(2L);
-        film.setFilmName("Тор: Рагнарёк");
+        film.setFilmId(20L);
+        film.setFilmName("Небоскрёб");
         film.setAgeRestriction("PG-13");
-        film.setDirector("Тайка Вайтити");
-        film.setDuration("02:10:00");
-        session.setSessionId(1L);
+        film.setDirector("Роусон Маршалл Тёрбер");
+        film.setDuration("01:42:00");
+        session.setSessionId(4L);
         session.setFilm(film);
-        session.setDate(Date.valueOf("2018-08-21"));
-        session.setTime("10:00:00");
+        session.setDate(Date.valueOf("2018-09-07"));
+        session.setTime("09:00");
         List<Session> sessionList = sessionService.getSessions();
-        Assert.assertEquals(4,sessionList.size());
+        Assert.assertEquals(21,sessionList.size());
         Assert.assertEquals(session,sessionList.get(0));
         return;
     }
@@ -44,11 +44,11 @@ public class TestSessionService {
     @Test
     public void testGetSessionById(){
         session = new Session();
-        session.setSessionId(1L);
-        session.setFilm(new Film(2L));
-        session.setDate(Date.valueOf("2018-08-21"));
-        session.setTime("10:00:00");
-        Assert.assertEquals(session,sessionService.getSessionById(1L));
+        session.setSessionId(4L);
+        session.setFilm(new Film(20L));
+        session.setDate(Date.valueOf("2018-09-07"));
+        session.setTime("09:00");
+        Assert.assertEquals(session,sessionService.getSessionById(4L));
         return;
     }
 

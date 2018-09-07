@@ -1,6 +1,5 @@
-package com.anatoliivoloshyn.cinemawebapp.commands;
+package com.anatoliivoloshyn.cinemawebapp.command;
 
-import com.anatoliivoloshyn.cinemawebapp.entity.Language;
 import com.anatoliivoloshyn.cinemawebapp.entity.Role;
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
 import com.anatoliivoloshyn.cinemawebapp.service.UserService;

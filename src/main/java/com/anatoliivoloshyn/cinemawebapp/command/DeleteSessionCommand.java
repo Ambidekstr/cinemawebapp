@@ -1,7 +1,6 @@
-package com.anatoliivoloshyn.cinemawebapp.commands;
+package com.anatoliivoloshyn.cinemawebapp.command;
 
 import com.anatoliivoloshyn.cinemawebapp.entity.Session;
-import com.anatoliivoloshyn.cinemawebapp.service.FilmService;
 import com.anatoliivoloshyn.cinemawebapp.service.SessionService;
 import com.anatoliivoloshyn.cinemawebapp.service.TicketService;
 

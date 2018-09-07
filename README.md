@@ -1,5 +1,5 @@
 ## Project name
-### **Cinema**
+### **CinemaWebApp**
 
 ## Description
 The small online cinema with one hall. 
@@ -20,9 +20,13 @@ The administrator can: add a new film to the schedule, cancel the film, view the
 ### Requirements
 To run the project you need installed: 
   * Java 8 or higher version 
-  * Apache Maven 3.5.2
+  * Apache Maven 4.0.0
+  * Tomcat
   
 ### Installation and running
+* Build the project using Maven. 
+* Place war package you obtained from previous step into Tomcat's "webapps" directory.
+* Run Tomcat. 
 
  
 

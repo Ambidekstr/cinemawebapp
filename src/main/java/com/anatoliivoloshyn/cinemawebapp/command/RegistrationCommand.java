@@ -1,11 +1,11 @@
-package com.anatoliivoloshyn.cinemawebapp.commands;
+package com.anatoliivoloshyn.cinemawebapp.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LoginCommand implements ICommand {
+public class RegistrationCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "/login.jsp";
+        return "/registration.jsp";
     }
 }

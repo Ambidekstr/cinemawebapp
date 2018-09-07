@@ -8,8 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestLoginService {
-
+public class TestUserService {
     private UserService userService;
     private String login;
     private String password;
@@ -29,19 +28,19 @@ public class TestLoginService {
         user.setSurname("Voloshyn");
     }
 
-    @Test
-    public void testLogin(){
-        Assert.assertEquals(user, userService.login(login,password));
-        Assert.assertNull(userService.login("",password));
-        Assert.assertNull(userService.login(login,""));
-        return;
-    }
-
     @After
     public void tearDown(){
         user = null;
         password = null;
         login = null;
         userService = null;
+    }
+
+    @Test
+    public void testLogin(){
+        Assert.assertEquals(user, userService.login(login,password));
+        Assert.assertNull(userService.login("",password));
+        Assert.assertNull(userService.login(login,""));
+        return;
     }
 }

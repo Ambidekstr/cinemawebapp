@@ -15,12 +15,12 @@
     </servlet-mapping>
     <filter>
         <filter-name>Filter</filter-name>
-        <filter-class>com.anatoliivoloshyn.cinemawebapp.filters.EncodingFilter</filter-class>
+        <filter-class>com.anatoliivoloshyn.cinemawebapp.filter.EncodingFilter</filter-class>
 
     </filter>
     <filter>
         <filter-name>AdminFilter</filter-name>
-        <filter-class>com.anatoliivoloshyn.cinemawebapp.filters.AdminFilter</filter-class>
+        <filter-class>com.anatoliivoloshyn.cinemawebapp.filter.AdminFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>Filter</filter-name>

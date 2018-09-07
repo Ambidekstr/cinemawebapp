@@ -1,4 +1,4 @@
-package com.anatoliivoloshyn.cinemawebapp.filters;
+package com.anatoliivoloshyn.cinemawebapp.filter;
 
 import javax.servlet.*;
 import java.io.IOException;

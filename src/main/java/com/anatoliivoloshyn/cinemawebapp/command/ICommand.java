@@ -1,4 +1,4 @@
-package com.anatoliivoloshyn.cinemawebapp.commands;
+package com.anatoliivoloshyn.cinemawebapp.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
