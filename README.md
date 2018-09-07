@@ -20,7 +20,7 @@ The administrator can: add a new film to the schedule, cancel the film, view the
 ### Requirements
 To run the project you need installed: 
   * Java 8 or higher version 
-  * Apache Maven 4.0.0
+  * Apache Maven 3.3.9
   * Tomcat
   
 ### Installation and running
