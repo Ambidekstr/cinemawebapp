@@ -27,6 +27,8 @@ public class ControllerHelper {
         commandResolver.put("addNewSession", new AddNewSessionCommand());
         commandResolver.put("changeLocale", new ChangeLocaleCommand());
         commandResolver.put("logOut", new LogOutCommand());
+        commandResolver.put("previousPage", new PreviousPageCommand());
+        commandResolver.put("nextPage", new NextPageCommand());
     }
 
     public static ControllerHelper getInstance(){

@@ -33,6 +33,17 @@ public class SessionService {
         return sessions;
     }
     /**
+     * Method that finds all Sessions in data base.
+     * @return List of Sessions if empty than there is no Sessions in the data base.
+     */
+    public List<Session> getSessionsWithLimit(int from){
+        sessions = daoSession.findAllSessionsWithLimit(from);
+        for (Session s: sessions) {
+            s.setFilm(daoFilm.findById(s.getFilm().getFilmId()));
+        }
+        return sessions;
+    }
+    /**
      * Method that finds Session that correspond to Session id.
      * @param sessionId Session id.
      * @return Session if null than there is no such Session.

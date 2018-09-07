@@ -29,7 +29,7 @@ public class AdminFilter implements Filter {
             if (request.getParameter("command").equals("deleteSession")
                     || request.getParameter("command").equals("addNewSession")
                     || request.getParameter("command").equals("addSession")) {
-                if (user != null && user.getRole().getRole().equals("admin")) {
+                if (user != null && user.getRole().getRoleId()==1L) {
                     filterChain.doFilter(request, response);
                 }else {
                     response.sendRedirect("/error.jsp");
@@ -39,7 +39,8 @@ public class AdminFilter implements Filter {
                 filterChain.doFilter(request,response);
                 return;
             }
+        }else {
+            filterChain.doFilter(request, response);
         }
-        filterChain.doFilter(request,response);
     }
 }

@@ -1,6 +1,7 @@
 package com.anatoliivoloshyn.cinemawebapp.service;
 
 import com.anatoliivoloshyn.cinemawebapp.dao.DAOFactory;
+import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAORole;
 import com.anatoliivoloshyn.cinemawebapp.dao.interfaces.IDAOUser;
 import com.anatoliivoloshyn.cinemawebapp.entity.User;
 import org.apache.log4j.Logger;

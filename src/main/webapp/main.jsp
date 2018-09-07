@@ -33,6 +33,18 @@
             </form>
         </tr>
     </c:forEach>
+    <tr>
+        <td colspan="2" align="center">
+            <c:if test="${previousPage>0}">
+                <a href="/Controller?command=previousPage"><fmt:message key = "PREVIOUS" bundle="${ms}"/></a>
+            </c:if>
+        </td>
+        <td colspan="2" align="center">
+            <c:if test="${!empty sessionList}">
+                <a href="/Controller?command=nextPage"><fmt:message key = "NEXT" bundle="${ms}"/></a>
+            </c:if>
+        </td>
+    </tr>
 </table>
 </body>
 </html>

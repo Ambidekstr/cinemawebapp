@@ -14,6 +14,7 @@ import java.util.List;
 public class DAOSession implements IDAOSession {
     private static Logger logger = Logger.getLogger(DAOSession.class);
     private final String SELECT_ALL = "Select * from `session`";
+    private final String SELECT_ALL_WITH_LIMIT = "Select * from `session` LIMIT ? OFFSET ?";
     private final String SELECT_BY_ID = "Select * from `session` where `session_id` = ?";
     private final String ADD_SESSION = "Insert into `session`(`film_id`, `date`, `time`) values (?,?,?)";
     private final String UPDATE_SESSION = "Update `session` set `film_id` = ?, `date` = ?, `time` = ? where `session_id` = ?";
@@ -30,6 +31,35 @@ public class DAOSession implements IDAOSession {
         try{
             connection = DataSource.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(SELECT_ALL);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                sessionDao = new Session(
+                        resultSet.getLong("session_id"),
+                        new Film(resultSet.getLong("film_id")),
+                        resultSet.getDate("date"),
+                        resultSet.getString("time"));
+                sessionList.add(sessionDao);
+            }
+        }catch (SQLException e){
+            logger.warn("Failed to find sessions", e);
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.warn("Failed to close connection", e);
+            }
+        }
+        return sessionList;
+    }
+
+    @Override
+    public List<Session> findAllSessionsWithLimit(int from) {
+        sessionList = new LinkedList<>();
+        try{
+            connection = DataSource.getInstance().getConnection();
+            preparedStatement = connection.prepareStatement(SELECT_ALL_WITH_LIMIT);
+            preparedStatement.setInt(2,from);
+            preparedStatement.setInt(1,7);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 sessionDao = new Session(

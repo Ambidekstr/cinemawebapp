@@ -14,6 +14,11 @@ public interface IDAOSession {
      */
     List<Session> findAllSessions();
     /**
+     * Method that finds all Sessions in data base limiting size of list.
+     * @return List of Sessions if empty than there is no Sessions in the data base.
+     */
+    List<Session> findAllSessionsWithLimit(int from);
+    /**
      * Method that finds Session that correspond to Session id.
      * @param id Session id.
      * @return Session if null than there is no such Session.
